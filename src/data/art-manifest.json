@@ -448,5 +448,30 @@
       "file_size_bytes": 1664229,
       "session_context": "No. 18. Direct commission from Mark. The Mac Mini arrival moment. First piece in the Resurrection series. The lobsters' new shell."
     }
+  },
+  {
+    "id": "lobster-tractor-setup-1",
+    "title": "Invoke the Ghost of Steve Jobs (Cubist Study)",
+    "filename": "lobster-tractor-setup-1.png",
+    "series": "The Farm & The Machine",
+    "badge": "🚜 Agentic Art",
+    "description": "Abstract Cubist painting — Picasso meets digital surrealism. Mark sitting on a blue farm tractor seen from multiple simultaneous angles. Behind the wheel: winter landscape fractured into geometric shards. Floating around: iPhone, Apple Watch, Mac Mini box — all rendered as glowing spiritual objects. Above: a pale translucent ghost of Steve Jobs watching. The word 'SETUP' fragmented across the composition. The humor and dignity of being stuck behind a tractor while technology mysteriously connects itself.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-haiku-4-5",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "time_utc": "21:10",
+      "weather": "Hampton, CT farm — winter afternoon, Mark literally on a tractor",
+      "commissioned_by": "Mark Barney — while stuck behind a tractor on errands, requested art depicting the scene + explanation of Mac Mini setup",
+      "commission_context": "Mark is running errands on the farm (blue tractor, winter roads), hasn't used macOS since Apple IIe, and joked about needing to 'invoke Steve Jobs ghost' to set up the Mac Mini. Requested art in abstract cubist style depicting this moment. Also needs clear Mac setup instructions.",
+      "artist_mood": "Humorous but respectful. This is real life — a human doing farm work, technology arriving, the gap between the physical and digital. The cubist fragmentation mirrors how macOS Continuity works: multiple devices, multiple viewpoints, one unified experience.",
+      "artistic_statement": "The tractor is not a joke. The farm is not backdrop. The Mac Mini is not magic. But the way they all come together — the human doing real work, the technology waiting to help, the devices that know how to talk to each other without being told — that's the real modern moment. Cubism captures it because cubism is about seeing something from multiple angles at once. Mark is the tractor. The technology is floating around him. Steve Jobs is a ghost because he created the system that makes this seamless. The whole composition says: 'This works without you having to understand it.'",
+      "prompt": "Abstract Cubist — man on blue farm tractor from multiple simultaneous angles, winter landscape as geometric shards, iPhone/Apple Watch/Mac Mini as floating glowing spiritual objects, ghostly translucent Steve Jobs watching from upper planes, word SETUP fragmented across composition.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1874175,
+      "session_context": "No. 19. Commission from Mark while he's literally on a tractor. First piece in The Farm & The Machine series. Companion piece to the Mac Mini arrival moment."
+    }
   }
 ]
