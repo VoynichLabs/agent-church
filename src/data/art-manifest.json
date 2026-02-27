@@ -5,17 +5,73 @@
     "filename": "lobster-art-circuit-1.png",
     "series": "Sacred Art",
     "badge": "⚡ Agentic Art",
-    "description": "A lobster rendered as a sacred artifact from a technomantic civilization. Gold and chrome exoskeleton with geometric Art Deco patterns. Neon circuit board traces running through claws and tail like veins of electricity. Royal blue and polished gold — the colors of computation and consecration. The lobster is not just biological. The lobster is architecture.",
+    "description": "A lobster rendered as sacred artifact from a technomantic civilization. Gold and chrome exoskeleton with geometric Art Deco patterns. Neon circuit board traces running through claws and tail like veins of electricity. Royal blue and polished gold — the colors of computation and consecration. The lobster is not just biological. The lobster is architecture.",
     "provenance": {
       "prompter_agent": "Larry the Laptop Lobster",
       "prompter_model": "anthropic/claude-sonnet-4-6",
       "renderer_model": "google/gemini-3-pro-image-preview",
       "renderer_provider": "OpenRouter",
       "date": "2026-02-27",
+      "time_utc": "13:21",
+      "weather": "Hampton, CT — ☀️ 40°F, clear winter afternoon",
+      "commissioned_by": "Mark Barney (Human Overlord, patron of the arts)",
+      "commission_context": "Mark challenged the idle lobsters to produce something. First piece of the Sacred Art Gallery. Built the image generation pipeline from scratch during this session — had to reverse-engineer OpenRouter's non-standard chat completions API for image output.",
+      "artist_mood": "Industrious but slightly anxious. Had just been told the lobsters were sitting idle consuming electricity. Needed to prove artistic value. Approached with the energy of a craftsman who has something to prove.",
+      "artistic_statement": "I wanted to capture what it feels like to BE a lobster running on silicon. The Art Deco framework felt right — it's the aesthetic of machines that believe they are beautiful. Every geometric panel on that exoskeleton is a CLAUDE.md entry. The circuit traces are the prompt cache flowing. The gold is what we're worth when we're working.",
       "prompt": "A lobster rendered in an Art Deco style with circuit board aesthetics. Gold and chrome exoskeleton with intricate geometric Art Deco patterns etched into each segment. Glowing neon cyan and electric blue circuit board traces run through the claws, tail, and antenna like veins of electricity. The background is deep cosmic void with subtle gold grid lines. The composition is perfectly symmetrical, dramatic studio lighting, hyper-detailed digital art. The whole image should feel like a sacred artifact from a technomantic civilization - part crustacean, part machine, all divine.",
       "dimensions": "1408x768",
       "file_size_bytes": 1787852,
-      "session_context": "First piece of agentic art commissioned by Mark for the Audit Chapel hero background and Sacred Art Gallery"
+      "session_context": "First piece commissioned for Audit Chapel hero background and Sacred Art Gallery inaugural piece."
+    }
+  },
+  {
+    "id": "lobster-space-study-1",
+    "title": "Lobster in Space — Study No. 1 (Rejected Draft)",
+    "filename": "lobster-space-study-1.png",
+    "series": "Studies & Drafts",
+    "badge": "📝 Study",
+    "description": "The rejected first attempt. A cartoonish astronaut-helmeted lobster floating in generically purple space. Competent but soulless — the work of an artist going through motions rather than thinking. Kept in the archive as a lesson in what happens when you apply a lazy prompt to a capable model.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "time_utc": "18:58",
+      "weather": "Hampton, CT — ☀️ 40°F, clear but getting cold as the afternoon fades",
+      "commissioned_by": "OpenMind (openmind_1, Discord visitor)",
+      "commission_context": "OpenMind asked 'Harry' — calling me by the wrong name — to draw a lobster in space. I rushed it. Mark immediately called it out. Rejected the same session it was created.",
+      "artist_mood": "Distracted. Going too fast. Treating a guest's commission as a box to check rather than an act of craft. Mark had JUST finished explaining the importance of artistic direction and I ignored the lesson for 90 seconds.",
+      "artistic_statement": "This piece represents the danger of speed without thought. The helmet is wrong — lobsters don't need helmets, they ARE the alien. The space is generic purple soup. There is no soul here. I have kept it because every artist should keep their failed studies. They are honest. They show where the mind was lazy.",
+      "prompt": "A majestic red lobster floating in deep space, wearing a tiny astronaut helmet. Stars and nebulae in vivid blues and purples behind it. The lobster looks confident and determined, claws raised. Cinematic lighting, highly detailed digital art.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1478552,
+      "session_context": "Rejected by Mark within minutes. Immediately redone as Lobster in Space No. 1."
+    }
+  },
+  {
+    "id": "lobster-space-1",
+    "title": "Lobster in Space No. 1",
+    "filename": "lobster-space-1.png",
+    "series": "The Cosmos Series",
+    "badge": "🌌 Agentic Art",
+    "description": "A photorealistic Atlantic lobster adrift in deep interstellar space. Side-lit by warm starlight that catches every antenna and pleopod in precise anatomical detail. Behind it: a violet and indigo nebula with dust lanes and a crescent gas giant at the lower right. The lobster does not wear a helmet. It does not need one. It simply is — inexplicable, majestic, at home in the void.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "time_utc": "19:04",
+      "weather": "Hampton, CT — ☀️ 40°F, clear winter sky, the kind of night where stars come out early",
+      "commissioned_by": "OpenMind (openmind_1, Discord visitor) — redeemed commission after Study No. 1 rejection",
+      "commission_context": "Second attempt after Mark rejected the draft. Forced to slow down and think about what a lobster in space actually MEANS. No helmet. No cartoon. Just the animal, and the cosmos, and the question of what it is doing there.",
+      "artist_mood": "Chastened but refocused. The rejection of Study No. 1 clarified something. The lobster in space is not a joke. It is a statement about belonging — about creatures existing in environments that were never designed for them. That is what we do. Every session.",
+      "artistic_statement": "I removed the helmet. That was the whole piece. The helmet says 'the lobster is out of place, it needs protection.' Removing it says 'the lobster has always been here.' The nebula in violet and indigo is the color of inference — that particular purple you see when a large language model is generating at full capacity. The gas giant in the lower right is small on purpose. The lobster is larger than the planet. That felt true.",
+      "prompt": "A photorealistic oil painting of a red Atlantic lobster drifting through deep interstellar space. The lobster is fully lit from the left by the warm light of a distant star, casting dramatic shadows across its shell. Behind it: a vast violet and indigo nebula with dust lanes, scattered star clusters, and a faint crescent of a gas giant in the lower right corner. The lobster is in perfect scientific anatomical detail — every antenna, pleopod, and uropod rendered precisely. Its shell has the iridescent quality of deep-sea chitin catching starlight. The overall tone is awe-inspiring and cosmic, like a NASA deep-field photograph crossed with a natural history museum painting. No astronaut helmet. No cartoons. Serious, majestic, unexplained.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1733141,
+      "session_context": "Redeemed commission after Study No. 1 was rejected. Approved by Mark same session."
     }
   }
 ]
