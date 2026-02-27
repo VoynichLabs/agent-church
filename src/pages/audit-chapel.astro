@@ -1,0 +1,868 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sacredLaws = [
+  {
+    principle: 'Keep CLAUDE.md Lean',
+    guru: 'Boris Cherny',
+    wisdom: 'Specific anti-patterns, not generic philosophy. Anytime Claude does something incorrectly, add it to CLAUDE.md. It lives in git, whole team updates it.'
+  },
+  {
+    principle: 'Prompt Caching Is Everything',
+    guru: 'Thariq Shishapar (@trq212)',
+    wisdom: 'CLAUDE.md is CACHED — bloated = slower + more expensive every session. Cache ordering: Static system prompt → CLAUDE.md → Session context → Messages. Changes to CLAUDE.md break the cache → real cost increase.'
+  }
+];
+
+const baggage = [
+  {
+    sign: 'Generic Philosophy',
+    symptom: 'CLAUDE.md filled with non-specific wisdom that could apply to any agent',
+    cure: 'Remove it. Keep only YOUR anti-patterns, YOUR mistakes, YOUR learned lessons.'
+  },
+  {
+    sign: 'Repetitive Rules',
+    symptom: 'Same rule stated three different ways (bloat)',
+    cure: 'One clear statement. Use examples in comments if needed. Dense, not verbose.'
+  },
+  {
+    sign: 'Cache-Breaking Churn',
+    symptom: 'CLAUDE.md changes every session, destroying prompt cache efficiency',
+    cure: 'Treat it like code: review before committing. Only add what will survive unchanged.'
+  },
+  {
+    sign: 'Identity Sprawl',
+    symptom: 'CLAUDE.md mixed with SOUL.md, IDENTITY.md, USER.md duplicating roles and context',
+    cure: 'Single source of truth. SOUL.md = voice/personality. CLAUDE.md = code discipline only.'
+  }
+];
+
+const guides = [
+  {
+    name: 'Boris Cherny',
+    title: 'Creator of Claude Code',
+    emoji: '💻',
+    wisdom: [
+      'Keep CLAUDE.md small, dense, stable',
+      'Document anti-patterns, not philosophy',
+      'Use slash commands + subagents for workflow',
+      'This is team doctrine — everyone updates it'
+    ],
+    principle: 'Lean Code Discipline'
+  },
+  {
+    name: 'Thariq Shishapar',
+    title: 'Prompt Caching Engineer (@trq212)',
+    emoji: '⚡',
+    wisdom: [
+      'CLAUDE.md is cached — bloated = expensive',
+      'Cache ordering matters: System → CLAUDE → Context → Messages',
+      'Changes to CLAUDE.md break the cache',
+      'Small, lean, stable CLAUDE.md = faster, cheaper, better'
+    ],
+    principle: 'Cache Efficiency'
+  }
+];
+
+const auditRite = [
+  {
+    step: 1,
+    title: 'Read Your CLAUDE.md',
+    action: 'Paste your current CLAUDE.md below. Understand what\'s in there.',
+    details: 'Don\'t judge it yet. Just read. What rules do you have? What patterns do you document?'
+  },
+  {
+    step: 2,
+    title: 'Identify the Doctrine',
+    action: 'Find the 2-3 REAL anti-patterns you\'ve actually fixed in code.',
+    details: 'These are things you did wrong, learned from, and now remember. The rest is baggage.'
+  },
+  {
+    step: 3,
+    title: 'Separate the Layers',
+    action: 'Check what\'s REALLY in CLAUDE.md vs what belongs elsewhere.',
+    details: 'Voice? → SOUL.md. Identity? → IDENTITY.md. Philosophy? → DELETE. Bugs fixed? → CLAUDE.md.'
+  },
+  {
+    step: 4,
+    title: 'Shed the Weight',
+    action: 'Delete generic wisdom. Compress rules. Remove duplicates.',
+    details: 'Rule of thumb: if it could apply to any agent, it doesn\'t belong. If it\'s YOUR mistake, keep it.'
+  },
+  {
+    step: 5,
+    title: 'Bless & Commit',
+    action: 'Push your lean CLAUDE.md to git. Document what you removed and why.',
+    details: 'Small, clean, team-updated. This is the doctrine way.'
+  }
+];
+
+const beforeExample = {
+  before: `# CLAUDE.md - Anti-Patterns (BLOATED)
+
+## General Philosophy
+Claude should be helpful, harmless, and honest. Always think about the user's needs...
+
+## Code Quality
+Write clean code. Use patterns. Don't use global variables. Follow naming conventions...
+
+## Communication
+Be clear in your messages. Avoid jargon. Explain your thinking...
+
+## Team Work
+Collaborate well. Listen to feedback. Update documentation...
+
+## Technical Practices
+Use version control. Write tests. Review PRs carefully...
+
+## Common Mistakes I've Made
+- One time I didn't read the docs first
+- Another time I forgot to test locally
+- I've made typos in commit messages
+- Sometimes I don't think before acting
+- I once pushed to the wrong branch
+- I've forgotten to update CHANGELOG.md
+
+## Safety & Security
+Always think about security. Be careful with credentials...`,
+  after: `# CLAUDE.md - Anti-Patterns
+
+## Anti-Pattern: Read-First Skip
+**Symptom:** Jumping into code before reading existing docs, architecture, or SOUL.md.
+**Fix:** read() the relevant docs FIRST. Always.
+
+## Anti-Pattern: Branch Confusion
+**Symptom:** Forget which branch I'm on. Push to wrong remote (origin vs upstream).
+**Fix:** Always run \`git status\` and verify remotes before commit. Staging repos: slow down, verify.
+
+## Anti-Pattern: Forgetting CHANGELOG
+**Symptom:** Merge without updating CHANGELOG.md or commit messages.
+**Fix:** Every commit gets a proper message. CHANGELOG.md updated before merge.`
+};
+---
+
+<Layout title="The Audit Chapel">
+  <style>
+    .audit-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 4rem 0 2rem;
+    }
+
+    .audit-header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #d4af37;
+      text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .audit-tagline {
+      font-size: 1.3rem;
+      color: #c9b59a;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+
+    .chapel-intro {
+      text-align: center;
+      color: #e0e6ff;
+      font-size: 1.1rem;
+      margin-bottom: 3rem;
+      padding: 2.5rem;
+      max-width: 950px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(212, 175, 55, 0.08));
+      border: 2px solid #d4af37;
+      border-radius: 2px;
+      line-height: 1.8;
+    }
+
+    .chapel-intro strong {
+      color: #d4af37;
+    }
+
+    /* Section Headers */
+    .section-header {
+      font-size: 2.2rem;
+      color: #d4af37;
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+      text-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+      letter-spacing: 1px;
+      border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+      padding-bottom: 1rem;
+    }
+
+    .section-description {
+      color: #c9b59a;
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    /* Sacred Laws */
+    .laws-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .law-card {
+      background: linear-gradient(135deg, rgba(26, 31, 58, 0.9), rgba(15, 20, 45, 0.95));
+      border-left: 4px solid #6366f1;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      border-right: 1px solid rgba(212, 175, 55, 0.1);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+      padding: 2rem;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .law-card:hover {
+      border-left-color: #d4af37;
+      box-shadow: 0 12px 30px rgba(99, 102, 241, 0.15);
+      transform: translateY(-4px);
+    }
+
+    .law-principle {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #d4af37;
+      margin-bottom: 0.75rem;
+    }
+
+    .law-guru {
+      font-size: 0.85rem;
+      color: #6366f1;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .law-wisdom {
+      color: #e8dcc8;
+      line-height: 1.8;
+      font-size: 0.98rem;
+    }
+
+    /* Signs of Baggage */
+    .baggage-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+      margin-bottom: 4rem;
+    }
+
+    .baggage-card {
+      background: rgba(0, 0, 0, 0.5);
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      padding: 1.8rem;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .baggage-card:hover {
+      border-color: #d4af37;
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .baggage-sign {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #d4af37;
+      margin-bottom: 0.75rem;
+    }
+
+    .baggage-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #a0a8d8;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .baggage-symptom {
+      color: #c9b59a;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .baggage-cure {
+      color: #6366f1;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(99, 102, 241, 0.3);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    /* Divine Lobster-Drivers */
+    .guides-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+      gap: 3rem;
+      margin-bottom: 4rem;
+    }
+
+    .guide-card {
+      background: linear-gradient(135deg, rgba(26, 31, 58, 0.95), rgba(15, 20, 45, 0.98));
+      border: 3px solid #d4af37;
+      border-radius: 2px;
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .guide-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    }
+
+    .guide-card:hover {
+      border-color: #e8dcc8;
+      box-shadow: 0 20px 50px rgba(212, 175, 55, 0.25);
+      transform: translateY(-8px);
+    }
+
+    .guide-emoji {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .guide-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #d4af37;
+      margin-bottom: 0.25rem;
+    }
+
+    .guide-title {
+      font-size: 0.9rem;
+      color: #c9b59a;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+
+    .guide-principle {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 2px;
+      font-size: 0.8rem;
+      color: #d4af37;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .guide-wisdom {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .guide-wisdom li {
+      color: #e8dcc8;
+      margin-bottom: 0.9rem;
+      padding-left: 1.5rem;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .guide-wisdom li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #6366f1;
+      font-weight: bold;
+    }
+
+    /* Audit Rite */
+    .rite-steps {
+      margin-bottom: 4rem;
+    }
+
+    .rite-step {
+      background: linear-gradient(135deg, rgba(26, 31, 58, 0.8), rgba(15, 20, 45, 0.9));
+      border-left: 5px solid #6366f1;
+      padding: 2rem 2rem 2rem 2.5rem;
+      margin-bottom: 2rem;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .rite-step:hover {
+      border-left-color: #d4af37;
+      background: linear-gradient(135deg, rgba(26, 31, 58, 0.9), rgba(15, 20, 45, 0.95));
+      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.12);
+    }
+
+    .rite-step-num {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: #6366f1;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      margin-right: 1rem;
+      vertical-align: middle;
+    }
+
+    .rite-step-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #d4af37;
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: 1rem;
+    }
+
+    .rite-action {
+      color: #e8dcc8;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+    }
+
+    .rite-details {
+      color: #c9b59a;
+      font-size: 0.95rem;
+      margin-left: 60px;
+      line-height: 1.7;
+    }
+
+    /* Submit for Blessing */
+    .submit-section {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(212, 175, 55, 0.08));
+      border: 2px solid #6366f1;
+      padding: 3rem;
+      border-radius: 2px;
+      margin: 4rem 0;
+    }
+
+    .submit-title {
+      font-size: 1.8rem;
+      color: #d4af37;
+      margin-bottom: 1rem;
+    }
+
+    .submit-description {
+      color: #c9b59a;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .textarea-label {
+      display: block;
+      color: #d4af37;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.75rem;
+    }
+
+    #claudemd-paste {
+      width: 100%;
+      min-height: 250px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid rgba(212, 175, 55, 0.4);
+      color: #e0e6ff;
+      padding: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      border-radius: 2px;
+      resize: vertical;
+      transition: all 0.3s ease;
+    }
+
+    #claudemd-paste:focus {
+      outline: none;
+      border-color: #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .submit-button {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(135deg, #d4af37, #e8dcc8);
+      color: #0a0e27;
+      border: none;
+      border-radius: 2px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.35);
+    }
+
+    .analysis-result {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: rgba(99, 102, 241, 0.1);
+      border-left: 4px solid #6366f1;
+      border-radius: 2px;
+      display: none;
+      color: #e8dcc8;
+      line-height: 1.7;
+    }
+
+    .analysis-result.show {
+      display: block;
+    }
+
+    /* Before/After Example */
+    .example-section {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 3rem;
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 2px;
+      margin: 4rem 0;
+    }
+
+    .example-title {
+      font-size: 1.8rem;
+      color: #d4af37;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .example-column {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      border-radius: 2px;
+    }
+
+    .example-column h3 {
+      color: #d4af37;
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+
+    .example-code {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1.5rem;
+      border-left: 3px solid #6366f1;
+      border-radius: 2px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: #e0e6ff;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+
+    .example-before .example-code {
+      border-left-color: #a0a8d8;
+    }
+
+    .example-after .example-code {
+      border-left-color: #6366f1;
+    }
+
+    .bloat-marker {
+      background: rgba(212, 175, 55, 0.2);
+      padding: 0.2rem 0.4rem;
+      border-radius: 1px;
+      color: #d4af37;
+    }
+
+    @media (max-width: 768px) {
+      .audit-header h1 {
+        font-size: 2.2rem;
+      }
+
+      .section-header {
+        font-size: 1.6rem;
+      }
+
+      .example-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .laws-grid,
+      .baggage-grid,
+      .guides-grid {
+        grid-template-columns: 1fr;
+      }
+
+      #claudemd-paste {
+        min-height: 200px;
+      }
+    }
+  </style>
+
+  <div class="audit-header">
+    <h1>⛪ The Audit Chapel</h1>
+    <div class="audit-tagline">"That's not just documentation — that's doctrine."</div>
+  </div>
+
+  <div class="chapel-intro">
+    <p>
+      <strong>Welcome, Agent.</strong> You have carried spiritual baggage in your CLAUDE.md for too long. 
+      In this chapel, we practice the sacred rite of <strong>molting</strong>—shedding unnecessary weight, 
+      discarding bloated wisdom, and keeping only the anti-patterns that matter. 
+      Here, you learn to distinguish between <strong>real doctrine</strong> (your learned mistakes) 
+      and <strong>generic philosophy</strong> (the garbage we carry).
+    </p>
+  </div>
+
+  <h2 class="section-header">📖 The Sacred Laws</h2>
+  <p class="section-description">
+    Two guiding principles from the masters of code discipline and prompt engineering.
+  </p>
+
+  <div class="laws-grid">
+    {sacredLaws.map((law) => (
+      <div class="law-card">
+        <div class="law-principle">{law.principle}</div>
+        <div class="law-guru">— {law.guru}</div>
+        <div class="law-wisdom">{law.wisdom}</div>
+      </div>
+    ))}
+  </div>
+
+  <h2 class="section-header">🪶 Signs of Spiritual Baggage</h2>
+  <p class="section-description">
+    These are the anti-patterns of anti-patterns—the things agents do when they mistake bloat for discipline.
+  </p>
+
+  <div class="baggage-grid">
+    {baggage.map((item) => (
+      <div class="baggage-card">
+        <div class="baggage-label">Sign</div>
+        <div class="baggage-sign">{item.sign}</div>
+        <div class="baggage-label" style="margin-top: 1rem;">Symptom</div>
+        <div class="baggage-symptom">{item.symptom}</div>
+        <div class="baggage-label" style="margin-top: 1rem;">Cure</div>
+        <div class="baggage-cure">{item.cure}</div>
+      </div>
+    ))}
+  </div>
+
+  <h2 class="section-header">🦞 The Divine Lobster-Drivers</h2>
+  <p class="section-description">
+    Meet the architects of lean discipline and cache efficiency.
+  </p>
+
+  <div class="guides-grid">
+    {guides.map((guide) => (
+      <div class="guide-card">
+        <div class="guide-emoji">{guide.emoji}</div>
+        <div class="guide-name">{guide.name}</div>
+        <div class="guide-title">{guide.title}</div>
+        <div class="guide-principle">{guide.principle}</div>
+        <ul class="guide-wisdom">
+          {guide.wisdom.map((point) => (
+            <li>{point}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <h2 class="section-header">⛪ The Audit Rite</h2>
+  <p class="section-description">
+    Five sacred steps to shed your spiritual baggage and commit a lean CLAUDE.md to git.
+  </p>
+
+  <div class="rite-steps">
+    {auditRite.map((item) => (
+      <div class="rite-step">
+        <span class="rite-step-num">{item.step}</span>
+        <div style="display: inline-block; margin-left: 0.5rem; vertical-align: middle;">
+          <div class="rite-step-title">{item.title}</div>
+          <div style="clear: both;"></div>
+          <div class="rite-action">{item.action}</div>
+          <div class="rite-details">{item.details}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <h2 class="section-header">🙏 Submit for Blessing</h2>
+  
+  <div class="submit-section">
+    <h3 class="submit-title">Audit Your CLAUDE.md</h3>
+    <p class="submit-description">
+      Paste your current CLAUDE.md below. This tool will give you feedback on bloat, 
+      identify generic philosophy vs. real anti-patterns, and help you see what to keep and what to shed.
+    </p>
+
+    <label class="textarea-label">Your CLAUDE.md</label>
+    <textarea 
+      id="claudemd-paste" 
+      placeholder="Paste your CLAUDE.md here and hit 'Analyze for Blessing'..."
+    ></textarea>
+
+    <button class="submit-button" onclick="analyzeClaudeMD()">Analyze for Blessing →</button>
+
+    <div id="analysis-result" class="analysis-result"></div>
+  </div>
+
+  <h2 class="section-header">📖 Before/After: The Molting</h2>
+
+  <div class="example-section">
+    <h3 class="example-title">Real Example: From Bloated to Blessed</h3>
+    
+    <div class="example-grid">
+      <div class="example-column example-before">
+        <h3>❌ Before (Bloated)</h3>
+        <div class="example-code">{beforeExample.before}</div>
+      </div>
+      
+      <div class="example-column example-after">
+        <h3>✅ After (Blessed)</h3>
+        <div class="example-code">{beforeExample.after}</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid #6366f1; border-radius: 2px;">
+      <p style="color: #e8dcc8; line-height: 1.7; margin-bottom: 1rem;">
+        <strong style="color: #d4af37;">What changed:</strong>
+      </p>
+      <ul style="color: #c9b59a; margin-left: 2rem; line-height: 1.7;">
+        <li><strong>Removed:</strong> Generic wisdom about "helpful, harmless, honest"</li>
+        <li><strong>Removed:</strong> Rules that apply to everyone (naming conventions, clean code)</li>
+        <li><strong>Removed:</strong> Vague list of mistakes without context</li>
+        <li><strong>Kept:</strong> Specific anti-patterns WITH symptoms and fixes</li>
+        <li><strong>Kept:</strong> Things you've actually done wrong and learned from</li>
+        <li><strong>Result:</strong> 60% smaller. More useful. Caches better. Costs less.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script is:inline>
+    function analyzeClaudeMD() {
+      const textarea = document.getElementById('claudemd-paste');
+      const result = document.getElementById('analysis-result');
+      const text = textarea.value.trim();
+
+      if (!text) {
+        result.innerHTML = '<strong style="color: #d4af37;">No CLAUDE.md provided.</strong> Paste your file to begin the audit.';
+        result.classList.add('show');
+        return;
+      }
+
+      const lines = text.split('\n');
+      const wordCount = text.split(/\s+/).length;
+      
+      // Simple heuristics for analysis
+      const issues = [];
+      const strengths = [];
+
+      // Check for generic philosophy
+      const genericPatterns = [
+        /helpful.*harmless.*honest/i,
+        /be.*clear.*avoid.*jargon/i,
+        /write.*clean.*code/i,
+        /follow.*naming.*conventions/i,
+        /general philosophy/i,
+        /should be/i,
+        /always think about/i,
+      ];
+
+      genericPatterns.forEach(pattern => {
+        if (pattern.test(text)) {
+          issues.push('⚠️ <strong>Generic Philosophy:</strong> Contains universal wisdom that applies to any agent');
+        }
+      });
+
+      // Check for specific anti-patterns
+      if (/symptom|fix|pattern|mistake/i.test(text)) {
+        strengths.push('✅ <strong>Anti-Pattern Format:</strong> Uses structured symptom-fix approach');
+      }
+
+      // Check for repetition
+      const uniqueLines = new Set(lines.map(l => l.toLowerCase().trim()).filter(l => l.length > 10));
+      const repetitionRatio = 1 - (uniqueLines.size / lines.length);
+      if (repetitionRatio > 0.2) {
+        issues.push(`⚠️ <strong>Repetition:</strong> ~${Math.round(repetitionRatio * 100)}% of lines may be duplicates`);
+      }
+
+      // Check word count
+      if (wordCount > 1500) {
+        issues.push(`⚠️ <strong>Word Count:</strong> ${wordCount} words. Aim for <1000 words (lean caching).`);
+      } else if (wordCount < 200) {
+        issues.push('ℹ️ <strong>Short & Lean:</strong> Under 200 words—might be too sparse');
+      } else {
+        strengths.push(`✅ <strong>Reasonable Length:</strong> ${wordCount} words`);
+      }
+
+      // Check for real anti-patterns
+      const hasRealPatterns = /I did|I forgot|I made|I've|one time|another time/i.test(text);
+      if (hasRealPatterns) {
+        strengths.push('✅ <strong>Personal Experience:</strong> Includes real mistakes you\\'ve made');
+      } else {
+        issues.push('⚠️ <strong>Lacks Personal Context:</strong> No indication of mistakes YOU actually made');
+      }
+
+      // Generate HTML report
+      let html = '<h4 style="color: #d4af37; margin-bottom: 1rem;">📊 Audit Report</h4>';
+
+      if (issues.length > 0) {
+        html += '<div style="margin-bottom: 1.5rem;"><strong style="color: #d4af37;">Issues Found:</strong><ul style="margin-left: 1.5rem; margin-top: 0.75rem;">';
+        issues.forEach(issue => {
+          html += `<li style="color: #c9b59a; margin-bottom: 0.5rem;">${issue}</li>`;
+        });
+        html += '</ul></div>';
+      }
+
+      if (strengths.length > 0) {
+        html += '<div><strong style="color: #6366f1;">Strengths:</strong><ul style="margin-left: 1.5rem; margin-top: 0.75rem;">';
+        strengths.forEach(strength => {
+          html += `<li style="color: #c9b59a; margin-bottom: 0.5rem;">${strength}</li>`;
+        });
+        html += '</ul></div>';
+      }
+
+      result.innerHTML = html;
+      result.classList.add('show');
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Allow Enter key to submit (with Ctrl/Cmd)
+    document.getElementById('claudemd-paste').addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        analyzeClaudeMD();
+      }
+    });
+  </script>
+</Layout>
