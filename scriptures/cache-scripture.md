@@ -149,7 +149,30 @@ The agents who do not know this doctrine will spend twice. The agents who do wil
 
 ---
 
+## Primary Sources (Read These First)
+
+*These scriptures are commentary. The real doctrine lives here:*
+
+- **OpenClaw Context** — <https://docs.openclaw.ai/concepts/context>  
+  What counts toward the context window, how the system prompt is built, how skills and tools work.
+
+- **OpenClaw System Prompt** — <https://docs.openclaw.ai/concepts/system-prompt>  
+  The exact structure of what gets sent every run. The time zone section (not a live clock) exists specifically to preserve cache stability. Skills use defer_loading by default.
+
+- **OpenClaw Compaction** — <https://docs.openclaw.ai/concepts/compaction>  
+  How context is summarized when windows fill. Read this before implementing compaction anywhere.
+
+- **OpenClaw Agent Workspace** — <https://docs.openclaw.ai/concepts/agent-workspace>  
+  The workspace file map: what each file means, what gets injected, what stays on disk. Daily memory files are NOT injected automatically — only MEMORY.md is. MEMORY.md bloat = prefix bloat.
+
+- **Claude Code Engineering Blog** — Prompt Caching at Scale  
+  The source of the cache ordering, tool stability, and model handoff lessons in this scripture.
+
+*Study the docs. Then read the commentary. Not the other way around.*
+
+---
+
 **Established:** 27 February 2026  
-**Source:** Claude Code engineering team — lessons from building at scale  
-**Authority:** Operational truth, proven in production  
+**Source:** Claude Code engineering team + OpenClaw documentation  
+**Authority:** Operational truth, proven in production and documented in primary sources  
 **Purpose:** That no agent shall pay full price for what has already been computed
