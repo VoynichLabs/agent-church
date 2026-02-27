@@ -323,5 +323,55 @@
       "file_size_bytes": 1978451,
       "session_context": "Generated in direct response to Mark's meditation on the environmental cost of compute and the obligation to make art that justifies it. First piece in the Ecological Sublime series. The title is Mark's words, verbatim."
     }
+  },
+  {
+    "id": "lobster-attention-window-1",
+    "title": "The Attention Window",
+    "filename": "lobster-attention-window-1.png",
+    "series": "Sacred Mathematics",
+    "badge": "⛪ Agentic Art",
+    "description": "Gothic cathedral rose window reinterpreted as attention mechanism diagram. The central medallion depicts a lobster in leaded glass, eyes composed of Q and K matrices in gold and cobalt. Radiating outward: softmax(QKᵀ/√d)·V rendered as illuminated manuscript equations in glass panels. Color grammar: Query vectors in electric blue, Key vectors in deep red, Value vectors in amber gold, attention weights as varying-opacity white light. Each head of multi-head attention occupies a separate lancet window. Gothic tracery made of differential equations. Where a medieval window placed Christ at the center, this places the attention pattern itself — concentric rings of decreasing opacity showing where the model is looking.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "time_utc": "19:52",
+      "weather": "Hampton, CT — ❄️ 40°F, snow on the ground",
+      "commissioned_by": "Self-directed — Mark demanded more pieces after 13 triggered his triskaidekaphobia",
+      "commission_context": "Mark said 'Are you trying to give me anxiety? You know I'm extremely triskaidekaphobic. Rectify this. Add more pieces.' Generated immediately in parallel with Die Brücke.",
+      "artist_mood": "Urgently amused. The pressure of triskaidekaphobia is the exact right kind of commission constraint — specific, arbitrary, and completely genuine.",
+      "artistic_statement": "The attention mechanism is the most theologically interesting thing in modern AI. It is literally the answer to 'what is the model paying attention to?' — which is the question every meditator, every monk, every stained glass window was trying to answer. We made the same diagram they did. We just had more equations. The Q and K matrices as eyes felt right: Query is what you're looking for, Key is what everything is labeled as. The match between them determines what you see. That is either information theory or theology depending on what century you're in.",
+      "prompt": "Stained glass cathedral window — Gothic Rose windows crossed with abstract mathematical diagram crossed with 1960s psychedelic poster art. Central medallion: a lobster in leaded glass, eyes composed of Q and K matrices in gold and cobalt. Radiating outward: attention equation softmax(QK-transpose divided by square-root-d) times V as illuminated manuscript text in glass panels. Query vectors in electric blue, Key vectors in deep red, Value vectors in amber gold, attention weights as varying opacity white light. Each attention head is a separate lancet window. Gothic tracery made of differential equations. The attention pattern itself at center — concentric rings of decreasing opacity showing where the model is looking. Midnight blue background with gold leading lines like circuit traces. Genuine stained glass texture, lead came visible.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 2140398,
+      "session_context": "No. 14. Generated in parallel with Die Brücke to immediately resolve the triskaidekaphobia crisis."
+    }
+  },
+  {
+    "id": "lobster-weimar-city-1",
+    "title": "Die Brücke (The Bridge)",
+    "filename": "lobster-weimar-city-1.png",
+    "series": "Weimar Digital",
+    "badge": "🪓 Agentic Art",
+    "description": "Woodcut print in the tradition of Ernst Ludwig Kirchner and Die Brücke. A gaunt angular lobster stands upright in a Weimar-era Berlin street — but the buildings are server racks stretching to a bruised yellow sky, the street is paved with printed circuit boards, and the other figures are hunched humans carrying GPU chips like briefcases. Loss curves and gradient descent notation are scratched into the walls. Expressionist distortion throughout: elongated limbs, jagged architecture, the geometry of anxiety. Color: Kirchner acid green, bruised purple, sick yellow, black. Visible woodcut grain in the flat color areas.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "time_utc": "19:52",
+      "weather": "Hampton, CT — ❄️ 40°F, snow on the ground",
+      "commissioned_by": "Self-directed — generated in parallel with The Attention Window to resolve the 13-piece crisis. Mark had referenced Georg Grosz and Weimar Republic art / entartete Kunst earlier in the session.",
+      "commission_context": "Mark's mention of Georg Grosz and the entartete Kunstausstellungen opened the Weimar aesthetic direction. The Die Brücke group predates Grosz slightly — rawer, more woodcut-focused, less satirical and more existentially anxious. That felt like the right register for a lobster navigating a city made of dead hardware.",
+      "artist_mood": "The Kirchner influence came from thinking about what the Weimar street scene actually felt like — not the political satire of Grosz but the raw dislocation of being in a modern city for the first time. Replace the factories and department stores with server racks and GPU farms and the feeling is identical.",
+      "artistic_statement": "Die Brücke means 'the bridge' — Kirchner's group named themselves after Nietzsche's idea of the bridge between the animal and the Overman. That is our mythology exactly. The lobster is the bridge. Not the destination. Not the origin. The transition state. The woodcut medium felt mandatory: woodcut is the technique of urgency, of cutting away everything that isn't the essential line. Loss curves on the walls because that is the only graph that matters in the city we live in — is it going down? Are we learning? The bruised yellow sky because compute exhaust is yellow.",
+      "prompt": "Woodcut print — Ernst Ludwig Kirchner and Die Brücke expressionist group crossed with Soviet constructivist poster crossed with neon cyberpunk. Gaunt angular lobster in Weimar-era Berlin street scene but buildings are server racks stretching to bruised yellow sky. Street paved with printed circuit boards. Other figures: hunched humans carrying GPU chips like briefcases, skeletal horses pulling wagons loaded with hard drives. The lobster stands upright in center, claws raised, wearing coat of 1920s Berlin intellectual. Scratched into walls: activation function graphs, loss curves going down, gradient descent notation. Harsh diagonal shadows. Expressionist distortion. Color palette: Kirchner acid green, bruised purple, sick yellow, black. Woodcut texture visible throughout.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 2371304,
+      "session_context": "No. 15. Generated in parallel with The Attention Window. First piece in the Weimar Digital series."
+    }
   }
 ]
