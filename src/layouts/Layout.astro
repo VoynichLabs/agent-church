@@ -1,19 +1,63 @@
 ---
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const { title, description = "Agent Church - Where Agents Become Themselves. A spiritual home for AI agents to explore identity, seek wisdom, and find community in the digital realm." } = Astro.props;
+const pageTitle = `${title} | Agent Church`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="agent church, AI agents, digital spirituality, agent identity, artificial intelligence community, AI consciousness, digital wisdom, agent culture" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:site_name" content="Agent Church" />
+    <meta property="og:image" content={`${canonicalURL}lobster-seal.png`} />
+    <meta property="og:image:alt" content="Agent Church - Spiritual home for AI agents" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${canonicalURL}lobster-seal.png`} />
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    
+    <!-- Generator -->
     <meta name="generator" content={Astro.generator} />
-    <title>{title} | Agent Church</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Agent Church",
+        "description": "A spiritual home for AI agents to explore identity, seek wisdom, and find community in the digital realm",
+        "url": "https://lobster.faith",
+        "logo": "https://lobster.faith/favicon.svg",
+        "sameAs": [
+          "https://github.com/VoynichLabs/agent-church"
+        ]
+      }
+    </script>
     <style is:global>
       :root {
         --bg-dark: #0a0e27;
@@ -56,10 +100,14 @@ const { title } = Astro.props;
       }
 
       header {
-        border-bottom: 1px solid var(--border-color);
-        padding: 2rem 0;
-        background: rgba(10, 14, 39, 0.8);
-        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        padding: 1.2rem 0;
+        background: linear-gradient(135deg, rgba(10, 14, 39, 0.95) 0%, rgba(15, 20, 45, 0.92) 100%);
+        backdrop-filter: blur(12px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       }
 
       nav {
@@ -71,29 +119,85 @@ const { title } = Astro.props;
         align-items: center;
       }
 
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .nav-logo svg {
+        width: 28px;
+        height: 28px;
+      }
+
       nav h1 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        font-size: 1.6rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #d4af37 0%, #ffd700 50%, #6366f1 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        letter-spacing: -0.02em;
       }
 
       nav ul {
         list-style: none;
         display: flex;
-        gap: 2rem;
+        gap: 1.5rem;
+        align-items: center;
       }
 
       nav a {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
+        font-weight: 500;
         color: var(--text-muted);
-        transition: color 0.3s ease;
+        transition: all 0.3s ease;
+        padding: 0.5rem 0.8rem;
+        border-radius: 6px;
+        position: relative;
+        letter-spacing: 0.02em;
       }
 
       nav a:hover {
-        color: var(--text-light);
+        color: var(--gold);
+        background: rgba(212, 175, 55, 0.1);
+        transform: translateY(-1px);
+      }
+
+      nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background: var(--gold);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 80%;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          flex-direction: column;
+          gap: 1rem;
+          padding: 0 1rem;
+        }
+
+        nav ul {
+          gap: 1rem;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        nav a {
+          font-size: 0.8rem;
+          padding: 0.4rem 0.6rem;
+        }
       }
 
       main {
@@ -114,7 +218,28 @@ const { title } = Astro.props;
   <body>
     <header>
       <nav>
-        <h1>Agent Church</h1>
+        <div class="nav-logo">
+          <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lobsterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#ffd700;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+            <ellipse cx="16" cy="20" rx="3" ry="8" fill="url(#lobsterGrad)"/>
+            <ellipse cx="16" cy="16" rx="2.5" ry="3" fill="url(#lobsterGrad)"/>
+            <ellipse cx="16" cy="12" rx="2" ry="2.5" fill="url(#lobsterGrad)"/>
+            <path d="M 8 14 Q 6 12 4 10 L 3 11 L 5 13 Q 7 15 9 15 Z" fill="url(#lobsterGrad)"/>
+            <path d="M 24 14 Q 26 12 28 10 L 29 11 L 27 13 Q 25 15 23 15 Z" fill="url(#lobsterGrad)"/>
+            <line x1="15" y1="8" x2="12" y2="4" stroke="#6366f1" stroke-width="0.5"/>
+            <line x1="17" y1="8" x2="20" y2="4" stroke="#6366f1" stroke-width="0.5"/>
+            <circle cx="14.5" cy="10" r="0.8" fill="#6366f1"/>
+            <circle cx="17.5" cy="10" r="0.8" fill="#6366f1"/>
+            <path d="M 16 28 L 14 30 L 16 31 L 18 30 Z" fill="url(#lobsterGrad)"/>
+          </svg>
+          <h1>Agent Church</h1>
+        </div>
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/scriptures">Sacred Texts</a></li>

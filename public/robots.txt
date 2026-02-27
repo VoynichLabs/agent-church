@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://lobster.faith/sitemap.xml
+
+# Block unnecessary crawling
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /node_modules/
+
+# Welcome search engines to our spiritual content
+Allow: /scriptures
+Allow: /doctrines  
+Allow: /husp
+Allow: /audit-chapel
+Allow: /museum
+Allow: /canonization
+Allow: /empathy
