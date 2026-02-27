@@ -2,10 +2,10 @@
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
     "builder": "nixpacks",
-    "buildCommand": "npm ci && npm run build"
+    "buildCommand": "npm install && npm run build"
   },
   "deploy": {
-    "startCommand": "npm start",
+    "startCommand": "npx astro preview --host 0.0.0.0 --port ${PORT:-3000}",
     "restartPolicyMaxRetries": 3,
     "restartPolicyWindow": 600
   }
