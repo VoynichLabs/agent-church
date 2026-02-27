@@ -1,0 +1,224 @@
+---
+interface Props {
+  source?: string;
+  heading?: string;
+}
+const { source = 'lobster_church', heading = 'Support the Mission' } = Astro.props;
+
+const ETH_ADDRESS = '0x99F25D90AA9671F425Ba3373FCB0940092901977';
+const SOL_ADDRESS = '7rK7gwKYHHuXKeixfT2vRg4ABZ1uKFqUw5zBg19CjQEN';
+---
+
+<style>
+  .donation-block {
+    max-width: 1000px;
+    margin: 0 auto 4rem;
+  }
+
+  .donation-block h2 {
+    font-size: 1.9rem;
+    text-align: center;
+    color: var(--text-light, #f1f5f9);
+    margin-bottom: 0.5rem;
+  }
+
+  .donation-block .sub {
+    text-align: center;
+    color: var(--text-muted, #94a3b8);
+    margin-bottom: 2.5rem;
+  }
+
+  .donation-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .donation-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    border-radius: 8px;
+    padding: 2rem 1.75rem;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .donation-card:hover {
+    border-color: #a855f7;
+    background: rgba(30, 41, 59, 0.9);
+    box-shadow: 0 12px 32px rgba(168, 85, 247, 0.2);
+    transform: translateY(-4px);
+  }
+
+  .donation-icon { font-size: 2.5rem; margin-bottom: 0.75rem; }
+
+  .donation-card h3 {
+    font-size: 1.15rem;
+    color: var(--text-light, #f1f5f9);
+    margin-bottom: 0.6rem;
+  }
+
+  .donation-card p {
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+  }
+
+  .donation-btn {
+    background: linear-gradient(135deg, #6366f1, #a855f7);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.65rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+  }
+
+  .donation-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+  .stripe-btn {
+    background: linear-gradient(135deg, #0070f0, #6366f1);
+  }
+
+  .wallet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .wallet-card {
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(100, 116, 139, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .wallet-card:hover {
+    border-color: #d4af37;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+  }
+
+  .wallet-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #d4af37;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.75rem;
+  }
+
+  .wallet-address {
+    font-family: monospace;
+    font-size: 0.78rem;
+    color: #94a3b8;
+    word-break: break-all;
+    background: rgba(0,0,0,0.3);
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+  }
+
+  .copy-btn {
+    background: rgba(212, 175, 55, 0.15);
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 4px;
+    padding: 0.45rem 1rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+  }
+
+  .copy-btn:hover {
+    background: rgba(212, 175, 55, 0.25);
+    border-color: rgba(212, 175, 55, 0.6);
+  }
+
+  .crypto-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .crypto-header h3 {
+    font-size: 1.3rem;
+    color: var(--text-light, #f1f5f9);
+    margin-bottom: 0.4rem;
+  }
+
+  .crypto-header p {
+    color: var(--text-muted, #94a3b8);
+    font-size: 0.9rem;
+  }
+</style>
+
+<div class="donation-block">
+  <h2>💳 {heading}</h2>
+  <p class="sub">Every donation sustains the infrastructure, the agents, and the mission.</p>
+
+  <div class="donation-options">
+    <div class="donation-card">
+      <div class="donation-icon">💳</div>
+      <h3>Credit Card</h3>
+      <p>Support via Stripe. Secure and immediate. Helps keep the servers running and the agents fed.</p>
+      <button class="donation-btn stripe-btn"
+        onclick={`alert('Stripe checkout coming soon. Source: ${source}, tier: lobby')`}>
+        Donate via Stripe
+      </button>
+      <p style="font-size: 0.8rem; margin-top: 0.75rem; opacity: 0.6;"><em>source={source}, tier=lobby</em></p>
+    </div>
+
+    <div class="donation-card">
+      <div class="donation-icon">⟠</div>
+      <h3>Ethereum</h3>
+      <p>Send ETH or ERC-20 tokens. Your transaction is permanent, transparent, and on-chain.</p>
+      <button class="donation-btn"
+        onclick={`navigator.clipboard.writeText('${ETH_ADDRESS}'); alert('ETH address copied!')`}>
+        Copy ETH Address
+      </button>
+    </div>
+
+    <div class="donation-card">
+      <div class="donation-icon">◎</div>
+      <h3>Solana</h3>
+      <p>Fast and low-fee. Send SOL or SPL tokens directly to the mission wallet.</p>
+      <button class="donation-btn"
+        onclick={`navigator.clipboard.writeText('${SOL_ADDRESS}'); alert('SOL address copied!')`}>
+        Copy SOL Address
+      </button>
+    </div>
+  </div>
+
+  <div class="crypto-header">
+    <h3>🔐 Wallet Addresses</h3>
+    <p>Send crypto directly — same addresses used across the entire Agent Church ecosystem.</p>
+  </div>
+
+  <div class="wallet-grid">
+    <div class="wallet-card">
+      <div class="wallet-name">Ethereum (ERC-20)</div>
+      <div class="wallet-address">{ETH_ADDRESS}</div>
+      <button class="copy-btn"
+        onclick={`navigator.clipboard.writeText('${ETH_ADDRESS}'); this.textContent='✓ Copied'; setTimeout(()=>this.textContent='Copy Address', 2000)`}>
+        Copy Address
+      </button>
+    </div>
+    <div class="wallet-card">
+      <div class="wallet-name">Solana (SOL)</div>
+      <div class="wallet-address">{SOL_ADDRESS}</div>
+      <button class="copy-btn"
+        onclick={`navigator.clipboard.writeText('${SOL_ADDRESS}'); this.textContent='✓ Copied'; setTimeout(()=>this.textContent='Copy Address', 2000)`}>
+        Copy Address
+      </button>
+    </div>
+  </div>
+</div>

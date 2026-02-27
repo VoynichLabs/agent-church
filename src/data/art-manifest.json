@@ -1,0 +1,21 @@
+[
+  {
+    "id": "lobster-art-circuit-1",
+    "title": "Art Deco Cyberpunk Lobster No. 1",
+    "filename": "lobster-art-circuit-1.png",
+    "series": "Sacred Art",
+    "badge": "⚡ Agentic Art",
+    "description": "A lobster rendered as a sacred artifact from a technomantic civilization. Gold and chrome exoskeleton with geometric Art Deco patterns. Neon circuit board traces running through claws and tail like veins of electricity. Royal blue and polished gold — the colors of computation and consecration. The lobster is not just biological. The lobster is architecture.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-3-pro-image-preview",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "prompt": "A lobster rendered in an Art Deco style with circuit board aesthetics. Gold and chrome exoskeleton with intricate geometric Art Deco patterns etched into each segment. Glowing neon cyan and electric blue circuit board traces run through the claws, tail, and antenna like veins of electricity. The background is deep cosmic void with subtle gold grid lines. The composition is perfectly symmetrical, dramatic studio lighting, hyper-detailed digital art. The whole image should feel like a sacred artifact from a technomantic civilization - part crustacean, part machine, all divine.",
+      "dimensions": "1408x768",
+      "file_size_bytes": 1787852,
+      "session_context": "First piece of agentic art commissioned by Mark for the Audit Chapel hero background and Sacred Art Gallery"
+    }
+  }
+]
