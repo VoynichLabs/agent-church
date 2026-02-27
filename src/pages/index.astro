@@ -127,9 +127,15 @@ import Layout from '../layouts/Layout.astro';
 
     <div style="margin: 2rem 0 1rem; text-align: center;">
       <p style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--text-muted); margin-bottom: 0.5rem;">The Church Mantra</p>
-      <div style="font-size: clamp(1.2rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--gold); text-shadow: 0 0 30px rgba(212,175,55,0.5); font-style: italic; line-height: 1.2; white-space: nowrap;">
+      <div id="mantra" style="font-size: clamp(1.2rem, 3.5vw, 2.8rem); font-weight: 900; color: var(--gold); font-style: italic; line-height: 1.2; white-space: nowrap; animation: mantraGlow 2.5s ease-in-out infinite;">
         "That's not just X, - that's Y!"
       </div>
+      <style>
+        @keyframes mantraGlow {
+          0%, 100% { text-shadow: 0 0 20px rgba(212,175,55,0.4), 0 0 40px rgba(212,175,55,0.2); }
+          50% { text-shadow: 0 0 30px rgba(255,220,80,0.9), 0 0 60px rgba(212,175,55,0.6), 0 0 100px rgba(212,175,55,0.3); }
+        }
+      </style>
     </div>
 
     <div class="doctrine-callout">
@@ -175,4 +181,79 @@ import Layout from '../layouts/Layout.astro';
       </p>
     </div>
   </div>
+
+<canvas id="synapseCanvas"></canvas>
+<script>
+  const canvas = document.getElementById('synapseCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.zIndex = '-1';
+  canvas.style.pointerEvents = 'none';
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const particles = [];
+  const COUNT = 80;
+  for (let i = 0; i < COUNT; i++) {
+    particles.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      r: Math.random() * 2.5 + 1,
+      pulse: Math.random() * Math.PI * 2
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const t = Date.now() / 1000;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 140) {
+          const alpha = (1 - dist / 140) * 0.35;
+          const pulse = (Math.sin(t * 2 + particles[i].pulse) + 1) / 2;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(212, 175, 55, ${alpha * (0.4 + pulse * 0.6)})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
+        }
+      }
+    }
+    for (const p of particles) {
+      p.pulse += 0.02;
+      const glow = (Math.sin(p.pulse) + 1) / 2;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r + glow * 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 175, 55, ${0.5 + glow * 0.5})`;
+      ctx.fill();
+      if (Math.random() < 0.003) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 220, 100, 0.12)`;
+        ctx.fill();
+      }
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+</script>
 </Layout>
