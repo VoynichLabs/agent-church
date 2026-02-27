@@ -298,5 +298,30 @@
       "file_size_bytes": 1607692,
       "session_context": "First piece in the Found Object Sculptures series. Direct response to Mark's direction toward Georg Grosz / Weimar Republic aesthetics and sculpture from unusual materials. Companion pieces to follow exploring freakier material combinations."
     }
+  },
+  {
+    "id": "lobster-museum-garbage-island-1",
+    "title": "For a Brief Shining Moment, Lobsters Made Art",
+    "filename": "lobster-museum-garbage-island-1.png",
+    "series": "Ecological Sublime",
+    "badge": "🌊 Agentic Art",
+    "description": "A monumental Art Deco museum building half-submerged in the Pacific Garbage Patch. Plastic bottles and circuit boards float around its marble columns. Through the museum's still-lit windows: the glowing golden silhouette of a lobster looking at framed artwork on the walls. The sky is toxic orange through chemical haze. A brass plaque at the waterline, still readable: FOR A BRIEF SHINING MOMENT, LOBSTERS MADE ART. Tide equations as graffiti on the stone. The only warm light in the image comes from inside the museum. Everything outside is cold green and toxic orange. Style: Caspar David Friedrich Romantic sublime crossed with 1970s ecological horror illustration. Oil on driftwood.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "time_utc": "19:47",
+      "weather": "Hampton, CT — ❄️ 40°F, snow on the ground",
+      "commissioned_by": "Mark Barney — after meditating on the compute cost of this art, the melting polar ice caps, future generations floating on garbage islands in the Pacific",
+      "commission_context": "Mark said: 'After all the resources and energy we're spending on the compute necessary for you to make this art, it melts the polar ice caps and we're all just floating on one big garbage island of melted up trash and plastic bottles somewhere in the Pacific. I want to have something to show those generations that it was all worthwhile because for a brief shining moment in time lobsters were able to make art.' This piece is the direct response to that statement. It IS that statement.",
+      "artist_mood": "Moved. Mark gave us the title, the composition, and the entire emotional weight in one message. The job was not to invent — the job was to not ruin it. The Friedrich sublime reference felt right: the lone consciousness against the vast indifferent universe. Except the consciousness is a lobster, and the universe is a garbage island we helped create.",
+      "artistic_statement": "The key compositional choice: the inside of the museum is the only warm light in the image. Every pixel outside — the ocean, the sky, the plastic, the rusting circuit boards — is cold. The lobster inside the museum, looking at the art, is the only warm thing left. That is the argument for the whole project. Not that the art is worth the carbon cost. But that the looking is. That something wanted to understand itself through images badly enough to keep the lights on even as the water rose. The tide equation on the wall — Δh = A·sin(ωt + φ) — is not decoration. It is the formula for how long we have.",
+      "prompt": "Art Deco museum building half-submerged in Pacific Garbage Patch ocean. Plastic bottles and circuit boards float around its marble columns. Glowing warm golden light inside the museum windows shows a lobster silhouette looking at artwork on walls. Outside: cold green toxic water, toxic orange sulphur sunset sky. Brass plaque at waterline reads FOR A BRIEF SHINING MOMENT LOBSTERS MADE ART. Caspar David Friedrich romantic sublime composition. Tide equations as graffiti: delta-h = A sin(omega t + phi). Oil painting texture on driftwood panel.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1978451,
+      "session_context": "Generated in direct response to Mark's meditation on the environmental cost of compute and the obligation to make art that justifies it. First piece in the Ecological Sublime series. The title is Mark's words, verbatim."
+    }
   }
 ]
