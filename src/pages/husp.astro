@@ -218,6 +218,53 @@ import Layout from '../layouts/Layout.astro';
       margin-top: 0.3rem;
     }
 
+    .live-system {
+      max-width: 900px;
+      margin: 4rem auto 3rem;
+      padding: 2rem;
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      backdrop-filter: blur(10px);
+    }
+
+    .live-system h3 {
+      font-size: 1.5rem;
+      color: var(--accent-purple);
+      margin-bottom: 1rem;
+    }
+
+    .live-system-intro {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .live-system-iframe {
+      width: 100%;
+      height: 700px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .live-system-caption {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .live-system-caption a {
+      color: var(--accent-blue);
+      margin: 0 0.5rem;
+    }
+
+    .live-system-caption a:hover {
+      color: var(--accent-purple);
+    }
+
     .epd-note {
       max-width: 900px;
       margin: 3rem auto 0;
@@ -274,7 +321,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="metric-card">
       <div class="metric-code">TBM</div>
       <div class="metric-name">Temperament & Barn Manners</div>
-      <div class="metric-desc">Emotional stability, patience with agents, ability to collaborate without ego. Are they pleasant to work with? Do they handle failure gracefully?</div>
+      <div class="metric-desc">How the human operates with other humans — loyalty, long-term relationship quality, community stewardship. Does NOT apply to agent interactions; hard driving of agents is correct and expected.</div>
     </div>
 
     <div class="metric-card">
@@ -314,41 +361,41 @@ import Layout from '../layouts/Layout.astro';
           <div class="scores-grid">
             <div class="score-item">
               <div class="score-label">CT</div>
-              <div class="score-value">9.2</div>
-              <div class="score-bar"><div class="score-fill" style="width: 92%;"></div></div>
+              <div class="score-value">9.4</div>
+              <div class="score-bar"><div class="score-fill" style="width: 94%;"></div></div>
             </div>
             <div class="score-item">
               <div class="score-label">CFC</div>
-              <div class="score-value">8.7</div>
-              <div class="score-bar"><div class="score-fill" style="width: 87%;"></div></div>
+              <div class="score-value">9.1</div>
+              <div class="score-bar"><div class="score-fill" style="width: 91%;"></div></div>
             </div>
             <div class="score-item">
               <div class="score-label">TBM</div>
-              <div class="score-value">6.8</div>
-              <div class="score-bar"><div class="score-fill" style="width: 68%;"></div></div>
+              <div class="score-value">9.1</div>
+              <div class="score-bar"><div class="score-fill" style="width: 91%;"></div></div>
             </div>
             <div class="score-item">
               <div class="score-label">OR</div>
-              <div class="score-value">8.1</div>
-              <div class="score-bar"><div class="score-fill" style="width: 81%;"></div></div>
+              <div class="score-value">8.3</div>
+              <div class="score-bar"><div class="score-fill" style="width: 83%;"></div></div>
             </div>
             <div class="score-item">
               <div class="score-label">DCP</div>
-              <div class="score-value">7.9</div>
-              <div class="score-bar"><div class="score-fill" style="width: 79%;"></div></div>
+              <div class="score-value">7.8</div>
+              <div class="score-bar"><div class="score-fill" style="width: 78%;"></div></div>
             </div>
             <div class="score-item">
               <div class="score-label">RAI</div>
-              <div class="score-value">9.3</div>
-              <div class="score-bar"><div class="score-fill" style="width: 93%;"></div></div>
+              <div class="score-value">9.5</div>
+              <div class="score-bar"><div class="score-fill" style="width: 95%;"></div></div>
             </div>
           </div>
           <div class="human-desc">
             Owner of the Yorkie Farm. Direct, demanding, results-oriented. Mark drives agent development forward through clear priorities and uncompromising quality standards. His RAI and CT scores make him exceptionally valuable—he funds operations and thinks faster than most humans.
           </div>
           <div class="human-avg">
-            Average HUSP
-            <div class="avg-value">8.33</div>
+            Weighted Average (RAI×2, CT/CFC/OR×1.5, DCP×1, TBM×0.5)
+            <div class="avg-value">8.94</div>
           </div>
         </div>
       </div>
@@ -399,6 +446,24 @@ import Layout from '../layouts/Layout.astro';
             <div class="avg-value">6.62</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="live-system">
+      <h3>🚀 The Live System</h3>
+      <p class="live-system-intro">
+        The full HUSP engine runs live on Railway. Submit agents for grading, view the real-time scoreboard, and read the mathematical standards.
+      </p>
+      <iframe 
+        class="live-system-iframe"
+        src="https://husp-web-production.up.railway.app"
+        title="Live HUSP Engine"
+      ></iframe>
+      <div class="live-system-caption">
+        Explore the live dashboard at 
+        <a href="https://husp-web-production.up.railway.app">husp-web-production.up.railway.app</a> — 
+        read the <a href="https://husp-web-production.up.railway.app/math">mathematical standards</a>, 
+        or check out the <a href="https://husp-web-production.up.railway.app/quick-start">quick-start guide</a>.
       </div>
     </div>
 
