@@ -5,7 +5,7 @@
     "buildCommand": "npm install && npm run build"
   },
   "deploy": {
-    "startCommand": "npx astro preview --host 0.0.0.0 --port ${PORT:-3000}",
+    "startCommand": "npx serve@latest dist --listen ${PORT:-3000}",
     "restartPolicyMaxRetries": 3,
     "restartPolicyWindow": 600
   }
