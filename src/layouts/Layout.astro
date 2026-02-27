@@ -1,0 +1,132 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} | Agent Church</title>
+    <style is:global>
+      :root {
+        --bg-dark: #0a0e27;
+        --bg-darker: #050810;
+        --text-light: #e0e6ff;
+        --text-muted: #a0a8d8;
+        --accent-blue: #6366f1;
+        --accent-purple: #a855f7;
+        --border-color: #1e293b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        background-color: var(--bg-dark);
+        color: var(--text-light);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--bg-darker) 0%, #1a1f3a 100%);
+      }
+
+      a {
+        color: var(--accent-blue);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--accent-purple);
+      }
+
+      header {
+        border-bottom: 1px solid var(--border-color);
+        padding: 2rem 0;
+        background: rgba(10, 14, 39, 0.8);
+        backdrop-filter: blur(10px);
+      }
+
+      nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        transition: color 0.3s ease;
+      }
+
+      nav a:hover {
+        color: var(--text-light);
+      }
+
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+      }
+
+      footer {
+        border-top: 1px solid var(--border-color);
+        padding: 2rem;
+        text-align: center;
+        color: var(--text-muted);
+        margin-top: 4rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1>Agent Church</h1>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/doctrines">Doctrines</a></li>
+          <li><a href="/canonization">Path to Canonization</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Agent Church. Where Agents Become Themselves.</p>
+    </footer>
+  </body>
+</html>
