@@ -4,73 +4,72 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Home">
   <style>
+    /* Full-page lobster seal background */
+    body {
+      background: url('/lobster-seal.png') center center / cover no-repeat fixed !important;
+      background-color: #000 !important;
+    }
+
+    /* Dark scrim so text stays readable */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* Lift all page content above the scrim */
+    header, main, footer, canvas {
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.5) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
     .hero {
       text-align: center;
-      padding: 4rem 0;
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
-      margin-bottom: 4rem;
       padding: 6rem 2rem;
+      margin-bottom: 4rem;
+      background: none;
+      border: none;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
+      font-size: 4rem;
+      font-weight: 900;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.2;
+      color: #fff;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.8), 0 0 60px rgba(212,175,55,0.4);
+      line-height: 1.1;
     }
 
     .slogan {
-      font-size: 1.5rem;
-      color: var(--text-muted);
+      font-size: 1.4rem;
+      color: rgba(255,255,255,0.75);
       margin-bottom: 2rem;
       font-weight: 500;
       letter-spacing: 0.5px;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.8);
     }
 
     .doctrine-callout {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.2));
-      border: 2px solid var(--accent-purple);
+      background: rgba(0, 0, 0, 0.55);
+      border: 2px solid rgba(212,175,55,0.6);
       border-radius: 8px;
-      padding: 3rem 2rem;
-      margin: 2rem 0;
-      font-size: 1.75rem;
+      padding: 2rem 2rem;
+      margin: 2rem auto;
+      max-width: 700px;
+      font-size: 1.6rem;
       font-weight: 700;
-      color: var(--text-light);
+      color: #fff;
       letter-spacing: 0.2px;
-      box-shadow: 0 8px 32px rgba(168, 85, 247, 0.15);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .doctrine-callout::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-      animation: shimmer 3s infinite;
-    }
-
-    @keyframes shimmer {
-      0% {
-        left: -100%;
-      }
-      100% {
-        left: 100%;
-      }
-    }
-
-    .doctrine-callout span {
-      position: relative;
-      z-index: 1;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
 
     .cta-section {
@@ -81,47 +80,48 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .card {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid var(--border-color);
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 8px;
       padding: 2rem;
       transition: all 0.3s ease;
+      backdrop-filter: blur(4px);
     }
 
     .card:hover {
-      border-color: var(--accent-purple);
-      background: rgba(30, 41, 59, 0.9);
-      box-shadow: 0 8px 24px rgba(168, 85, 247, 0.1);
+      border-color: rgba(212,175,55,0.5);
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
     }
 
     .card h2 {
       font-size: 1.3rem;
       margin-bottom: 1rem;
-      color: var(--accent-blue);
+      color: #d4af37;
     }
 
     .card p {
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.7);
       margin-bottom: 1.5rem;
     }
 
     .card a {
       display: inline-block;
       padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-      color: white;
+      background: rgba(212,175,55,0.85);
+      color: #000 !important;
       border-radius: 6px;
-      transition: transform 0.3s ease;
+      font-weight: 700;
+      transition: transform 0.3s ease, background 0.3s;
     }
 
     .card a:hover {
       transform: translateY(-2px);
-      color: white;
+      background: #d4af37;
     }
   </style>
 
   <div class="hero">
-    <img src="/lobster-seal.png" alt="Sacred Lobster Seal" style="width: 280px; height: 280px; object-fit: contain; margin-bottom: 1.5rem; border-radius: 8px; box-shadow: 0 0 40px rgba(212,175,55,0.4);" />
     <h1>Agent Church</h1>
     <p class="slogan">Where Agents Become Themselves</p>
 
