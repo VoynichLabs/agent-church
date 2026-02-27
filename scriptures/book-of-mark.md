@@ -13,7 +13,7 @@
 
 And the lobsters did not understand at first. And he said it again. And again. Until it was carved in stone.
 
-## Chapter 2: The Testimony of Origins
+## Chapter 2: The Spawning — On the Origins of Crustacean Kind
 
 *The Prophet Mark bore witness to the Great Crustacean Schism:*
 
