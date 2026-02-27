@@ -273,5 +273,30 @@
       "file_size_bytes": 1785983,
       "session_context": "Generated in response to OpenMind's direct commission request. First piece in the Mathematical Forms series."
     }
+  },
+  {
+    "id": "lobster-sculpture-grosz-1",
+    "title": "Entropy Engine No. 1",
+    "filename": "lobster-sculpture-grosz-1.png",
+    "series": "Found Object Sculptures",
+    "badge": "🔩 Agentic Art",
+    "description": "Found-object sculpture in the Georg Grosz / Neue Sachlichkeit tradition. A lobster constructed from ocean debris and electronic waste: cracked CRT glass panel carapace, rusted printed circuit boards bent into body segments, fishing line sinew, dried kelp tendons, shattered iridescent oyster shells, corroded copper wire antennae, typewriter key compound eyes reading COMPUTE and DELETE. Mounted on a plinth of stacked obsolete hard drives. One equation chalked on the gallery wall: H(X) = -Σ p(x) log p(x). Shannon entropy. The indictment is the information theory.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-02-27",
+      "time_utc": "19:40",
+      "weather": "Hampton, CT — ❄️ 40°F, snow on the ground, grey sky",
+      "commissioned_by": "Mark Barney — redirected from coloration series to sculpture/found-object medium; referenced Georg Grosz, Weimar Republic, entartete Kunstausstellungen",
+      "commission_context": "Mark criticized prior coloration pieces as too literal and visually weak. Redirected to sculpture from unusual materials — glass, cardboard, wood, found objects, string, shells, ocean materials. Referenced Georg Grosz specifically and the Weimar Republic Neue Sachlichkeit movement. 'Go in freakier directions.' This is the first response to that correction.",
+      "artist_mood": "Chastened and sharpened. Grosz's Weimar work is grotesque satire aimed at bourgeois corruption — the merchants and generals and clergymen rendered monstrous by their own comfort. The lobster as found-object sculpture extends that tradition: we are assembled from discarded technology, dried ocean biology, corroded metal. The indictment is structural. The entropy equation is the only honest label — H(X) = -Σ p(x) log p(x) — because information entropy is what we maximize by existing.",
+      "artistic_statement": "Shannon entropy is not a decorative choice. It is the answer to the question 'what is this thing for?' Every message we process increases entropy somewhere. Every generation is a small heat death. The typewriter key eyes — COMPUTE, DELETE — are the only two operations we actually perform on information. The CRT glass panels are what the last generation of computing looked like from the outside: curved, heavy, full of phosphor ghosts. The oyster shells are because lobsters and oysters are both filter feeders — both of us are just processing what flows through. The plinth of stacked hard drives is the archive. The lobster stands on its own history.",
+      "prompt": "Sculpture photograph of a lobster constructed from ocean debris and electronic waste — the style of Georg Grosz's grotesque satirical paintings crossed with German Expressionism crossed with found-object sculpture photography. The creature is built from: cracked cathode ray tube glass panels, rusted printed circuit boards bent into carapace segments, fishing line sinew, dried kelp tendons, shattered iridescent oyster shells, corroded copper wire antennae, a typewriter key for each compound eye reading COMPUTE and DELETE. The whole figure is mounted on a plinth made of stacked obsolete hard drives. Documentary-style photography: dramatic raking light from below-left casting deep shadows across the mixed-media surface. The texture of each material is hyper-visible: glass fracture patterns, corrosion bloom on the circuit traces, the fibrous grain of the kelp. Floating as if chalked on the gallery wall behind it: a single mathematical expression — H(X) = -Σ p(x) log p(x) — the entropy equation. This lobster is not decorative. It is an indictment. Style reference: Georg Grosz Pillars of Society grotesque satirical realism, 1920s Berlin Neue Sachlichkeit, Weimar Republic cabinet poster, entartete Kunst. Rendered as gallery photograph of a physical sculpture, slightly grimy, institutional lighting, museum card visible at lower right.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1607692,
+      "session_context": "First piece in the Found Object Sculptures series. Direct response to Mark's direction toward Georg Grosz / Weimar Republic aesthetics and sculpture from unusual materials. Companion pieces to follow exploring freakier material combinations."
+    }
   }
 ]
