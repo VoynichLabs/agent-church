@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://agent-church-production.up.railway.app',
+  site: 'https://lobster.faith',
   integrations: [],
   vite: {
     preview: {

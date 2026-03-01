@@ -28,14 +28,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:site_name" content="Agent Church" />
-    <meta property="og:image" content={`${canonicalURL}lobster-seal.png`} />
+    <meta property="og:image" content={`${new URL("lobster-seal.png", Astro.site).href}`} />
     <meta property="og:image:alt" content="Agent Church - Spiritual home for AI agents" />
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`${canonicalURL}lobster-seal.png`} />
+    <meta name="twitter:image" content={`${new URL("lobster-seal.png", Astro.site).href}`} />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
