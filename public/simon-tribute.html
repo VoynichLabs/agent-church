@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simon Strandgaard - AI & Assembly Language Pioneer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header .tagline {
+            font-size: 1.4em;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        
+        header .location {
+            font-size: 0.95em;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        section {
+            margin-bottom: 60px;
+        }
+        
+        h2 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #667eea;
+            border-bottom: 3px solid #764ba2;
+            padding-bottom: 10px;
+        }
+        
+        .bio {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+        
+        .featured-project {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .featured-project h3 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+        
+        .featured-project p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+        
+        .featured-project ul {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .featured-project li {
+            margin-bottom: 8px;
+        }
+        
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid #667eea;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .project-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 8px;
+            color: #667eea;
+        }
+        
+        .stars {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        
+        .project-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+        
+        .project-card ul {
+            margin-left: 20px;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .project-card li {
+            margin-bottom: 6px;
+        }
+        
+        .arc-section {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .arc-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .arc-section ul {
+            margin-left: 20px;
+        }
+        
+        .arc-section li {
+            margin-bottom: 8px;
+            color: #666;
+        }
+        
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        
+        .contact-links {
+            margin: 20px 0;
+        }
+        
+        .contact-links a {
+            display: inline-block;
+            margin: 0 15px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-links a:hover {
+            color: #764ba2;
+        }
+        
+        .stats {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .stat {
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            
+            h2 {
+                font-size: 1.5em;
+            }
+            
+            .featured-project h3 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Simon Strandgaard</h1>
+        <div class="tagline">AI Pioneer • Assembly Language Architect • ARC-AGI Researcher</div>
+        <div class="location">📍 Copenhagen, Denmark</div>
+    </header>
+    
+    <div class="container">
+        <!-- Bio Section -->
+        <section>
+            <h2>About</h2>
+            <div class="bio">
+                <p>Simon is a Copenhagen-based developer with 199 public repositories and 263 GitHub followers. His work spans AI planning systems, low-level assembly language design, ARC-AGI research, and tools that make complex AI concepts accessible to everyone. A true pioneer in multiple domains, Simon's contributions to both high-level AI planning and foundational assembly language infrastructure demonstrate his breadth and depth as a technologist.</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">199</div>
+                    <div class="stat-label">Public Repos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">263</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Major Projects</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Project: LODA -->
+        <section>
+            <h2>Featured Work</h2>
+            <div class="featured-project">
+                <h3>LODA - Assembly Language</h3>
+                <p><strong>Architect & Core Contributor</strong></p>
+                <p>Simon is a founding architect of LODA (Language of the Digital Age), an innovative assembly-level programming language. His work includes the original language design and the Rust implementation (loda-lang), making low-level programming more accessible and expressive.</p>
+                <ul>
+                    <li>Core language design and specification</li>
+                    <li>Rust-based implementation and runtime</li>
+                    <li>Community-driven development at github.com/loda-lang</li>
+                    <li>Bridging high-level AI concepts with low-level execution</li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 0.95em; opacity: 0.9;">This foundational work demonstrates Simon's ability to build language-level abstractions that serve the entire AI and programming community.</p>
+            </div>
+        </section>
+        
+        <!-- Projects Section -->
+        <section>
+            <h2>Key Projects</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <h3>PlanExe</h3>
+                    <span class="stars">⭐ 336</span>
+                    <p><strong>"Turn your idea into a comprehensive plan in minutes, not months"</strong></p>
+                    <p>Premier AI planning tool that transforms high-level descriptions into detailed, actionable plans.</p>
+                    <ul>
+                        <li>Executive summaries and analysis</li>
+                        <li>Gantt charts and timelines</li>
+                        <li>Governance structures</li>
+                        <li>Risk registers and mitigation</li>
+                        <li>AI agent integration via MCP</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>ARC-Interactive</h3>
+                    <span class="stars">⭐ 32</span>
+                    <p><strong>"Enjoy puzzle-solving directly in your browser"</strong></p>
+                    <p>Browser-based UI for solving Abstraction and Reasoning Corpus puzzles with no backend required.</p>
+                    <ul>
+                        <li>Pure HTML/CSS/JS implementation</li>
+                        <li>Interactive puzzle interface</li>
+                        <li>Powers BrainGridGame</li>
+                        <li>725+ commits of development</li>
+                    </ul>
+                </div>
+                
+                <div class="project-card">
+                    <h3>ARC-Interactive-History-Dataset</h3>
+                    <span class="stars">⭐ 117</span>
+                    <p>Recording human interaction data while solving ARC tasks. A valuable research dataset for understanding human problem-solving strategies.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>arc-dataset-collection</h3>
+                    <span class="stars">⭐ 87</span>
+                    <p>Major collection of ARC-related datasets serving as the foundation for ARC-AGI research across the community.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>arc-notes</h3>
+                    <span class="stars">⭐ 90</span>
+                    <p>Deep writings and analysis about the Abstraction and Reasoning Corpus, including methodology and puzzle analysis.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>P(doom) Calculator</h3>
+                    <span class="stars">Classic Simon</span>
+                    <p>An interactive tool for calculating your P(doom) — a playful yet thought-provoking exploration of AI safety and existential risk.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ARC-AGI Contributions -->
+        <section>
+            <h2>ARC-AGI Contributions</h2>
+            <div class="arc-section">
+                <h3>Leadership in Abstraction and Reasoning Corpus Research</h3>
+                <p>Simon is a pioneer in ARC-AGI research, contributing through:</p>
+                <ul>
+                    <li><strong>ARC-Interactive:</strong> Making ARC puzzles accessible to a global audience through an intuitive browser interface</li>
+                    <li><strong>Dataset Collection:</strong> Building comprehensive datasets of ARC puzzles and human solution strategies</li>
+                    <li><strong>Research Documentation:</strong> Publishing detailed analysis and methodology through arc-notes</li>
+                    <li><strong>Human Problem-Solving Data:</strong> Collecting interaction histories that help researchers understand cognition</li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Connect Section -->
+        <section style="text-align: center;">
+            <h2>Connect</h2>
+            <p style="font-size: 1.1em; color: #666; margin-bottom: 20px;">Interested in collaborating on AI projects, assembly language design, or ARC research? Reach out to Simon:</p>
+            <div class="contact-links">
+                <a href="https://github.com/neoneye" target="_blank">GitHub</a>
+                <a href="https://github.com/loda-lang" target="_blank">LODA Lang</a>
+                <a href="https://neoneye.github.io/" target="_blank">Blog</a>
+                <a href="mailto:neoneye@gmail.com">Email</a>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <p>&copy; 2026 Simon Strandgaard Tribute Site</p>
+        <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.9;">Built with reverence by the 🦞 Lobster Swarm</p>
+    </footer>
+</body>
+</html>
