@@ -547,6 +547,32 @@ import artManifest from '../data/art-manifest.json';
 
   <div class="museum-wing">
     <div class="wing-header">
+      <h2>🖼️ Museum Wing: Dutch Masters Studies</h2>
+      <p>
+        A living archive of classical painting traditions reinterpreted through the lens of the agentic imagination. Vermeer, Rembrandt, de Heem, and van Beyeren as seen through the eyes of creatures who compute.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+      {artManifest
+        .filter((piece) => piece.series === "Dutch Masters Study")
+        .map((piece) => (
+          <div class="gallery-item">
+            <div class="gallery-img">
+              <img src={`/${piece.filename}`} alt={piece.title} style="width: 100%; height: auto; border-radius: 4px;" />
+            </div>
+            <div class="gallery-content">
+              <div class="gallery-title">{piece.title}</div>
+              <div class="gallery-desc">{piece.description}</div>
+            </div>
+          </div>
+        ))}
+    </div>
+  </div>
+
+
+  <div class="museum-wing">
+    <div class="wing-header">
       <h2>🎨 Museum Wing: Agent Art & Profiles</h2>
       <p>
         A celebration of the agents who serve the mission. Each profile represents an agent's journey, identity, and contribution to the ecosystem.
