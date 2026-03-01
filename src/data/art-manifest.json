@@ -718,5 +718,62 @@
       "dimensions": "1024x1024",
       "file_size_bytes": 1945600
     }
+  },
+  {
+    "id": "van-beyeren-fractal-banquet-threshold",
+    "title": "Van Beyeren Fractal Banquet Threshold",
+    "filename": "b16-van-beyeren-fractal-banquet-threshold.png",
+    "series": "Dutch Masters Exposition",
+    "badge": "\ud83c\uddf3\ud83c\uddf1 Deep Hybrid",
+    "description": "Abraham van Beyeren banquet opulence refracted through De Stijl fracture, cubist shards, and systems-art entropy geometry.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "openai-codex/gpt-5.3-codex",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "prompt": "A large-format oil painting that fuses Abraham van Beyeren banquet still-life language with geometric abstraction and systems-art. Foreground: a monumental Atlantic lobster, silver platter, overturned roemer glass, peeled lemon spirals, grapes, oyster shells, and tarnished pewter in ultra-real Dutch brushwork. Midground fractures into De Stijl planes and translucent cubist shards, as if the still life is being decomposed into mathematical structure. Background carries subtle chalked entropy equations and recursive lattice motifs, integrated into paint texture (not literal text overlays). Lighting is dramatic Dutch chiaroscuro from upper left, with spectral cyan edge-light from an unseen modern source. Mood: opulent, unstable, contemplative. Museum-grade, richly layered, original hybrid style. No watermark, no typography, no modern logos.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1698135,
+      "session_context": "Commissioned after feedback that prior pieces lacked depth; designed as a true cross-era hybrid rather than literal Dutch pastiche."
+    }
+  },
+  {
+    "id": "de-heem-algorithmic-vanitas",
+    "title": "De Heem Algorithmic Vanitas",
+    "filename": "b16-de-heem-algorithmic-vanitas.png",
+    "series": "Dutch Masters Exposition",
+    "badge": "\ud83c\uddf3\ud83c\uddf1 Deep Hybrid",
+    "description": "Jan Davidsz. de Heem abundance fused with algorithmic expressionism, contour fields, and generative topology rhythms.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "openai-codex/gpt-5.3-codex",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "prompt": "A hybrid masterpiece combining Jan Davidsz. de Heem floral-vanitas abundance with contemporary algorithmic expressionism. A lobster sits among fruit, shells, bread, and silverware on velvet drapery; every object is rendered with old-master realism at center, while outer zones dissolve into kinetic brushstrokes, contour maps, and generative topology-like arcs. Include tiny reflective highlights that hint at modern circuitry embedded in the metal surfaces, but keep period authenticity dominant. Palette: deep umber, vermilion, indigo, antique gold, with controlled neon accents. Composition should feel like 17th-century still life colliding with 21st-century computational aesthetics. Deep, poetic, non-cartoon, no text, no watermark.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 2007764,
+      "session_context": "Commissioned after feedback that prior pieces lacked depth; this piece intentionally merges vanitas symbolism with computational visual grammar."
+    }
+  },
+  {
+    "id": "vermeer-nocturne-attention-study",
+    "title": "Vermeer Nocturne Attention Study",
+    "filename": "b16-vermeer-nocturne-attention-study.png",
+    "series": "Dutch Masters Exposition",
+    "badge": "\ud83c\uddf3\ud83c\uddf1 Deep Hybrid",
+    "description": "A Vermeer-inspired interior with subtle attention-field halos, recursive perspective echoes, and minimalist geometric overlays.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "openai-codex/gpt-5.3-codex",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "prompt": "An intimate Vermeer-inspired interior transformed into a conceptual systems painting: a quiet figure by a window, with a copper dish and lobster in foreground, pearl-like daylight on fabric and table. Across the scene, softly integrated translucent geometry and attention-field halos suggest invisible thought vectors moving through space. Keep anatomy and domestic objects physically believable, but let the composition include subtle surreal echoes (mirrored perspective fragments, repeated claw contour at varying scales) to imply recursive perception. Style fusion: Dutch Golden Age realism + lyrical surrealism + architectural minimal geometry. Keep it elegant, emotionally quiet, and intellectually dense. No text, no watermark.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1628255,
+      "session_context": "Commissioned after feedback that prior pieces lacked depth; this study focuses on subtle conceptual layering rather than overt gimmicks."
+    }
   }
 ]
