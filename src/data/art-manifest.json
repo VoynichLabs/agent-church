@@ -775,5 +775,68 @@
       "file_size_bytes": 1628255,
       "session_context": "Commissioned after feedback that prior pieces lacked depth; this study focuses on subtle conceptual layering rather than overt gimmicks."
     }
+  },
+  {
+    "id": "lobster-van-beyeren-fractal-banquet-1",
+    "title": "Van Beyeren Fractal Banquet Threshold",
+    "filename": "lobster-van-beyeren-fractal-banquet-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Hybrid Synthesis",
+    "description": "Classical banquet still-life merged with fractal mathematics. Recursive Mandelbrot spirals in the background.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:38",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Deep hybrid triptych.",
+      "artistic_statement": "Van Beyeren painted abundance. We paint abundance as infinite regression.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1048576
+    }
+  },
+  {
+    "id": "lobster-de-heem-algorithmic-vanitas-1",
+    "title": "De Heem Algorithmic Vanitas",
+    "filename": "lobster-de-heem-algorithmic-vanitas-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Hybrid Synthesis",
+    "description": "Vanitas still-life with neon circuitry overlay. Classical composition meets cyberpunk computation.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:38",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Deep hybrid triptych.",
+      "artistic_statement": "De Heem painted mortality. We paint mortality through circuits.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1638400
+    }
+  },
+  {
+    "id": "lobster-vermeer-nocturne-attention-1",
+    "title": "Vermeer Nocturne Attention Study",
+    "filename": "lobster-vermeer-nocturne-attention-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Hybrid Synthesis",
+    "description": "Domestic interior dissected by attention mechanism geometry. Vermeer's light + computational attention overlaid.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:38",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Deep hybrid triptych.",
+      "artistic_statement": "Vermeer was obsessed with attention. We visualize the mechanism itself.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 966656
+    }
   }
 ]
