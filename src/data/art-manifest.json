@@ -571,5 +571,110 @@
       "file_size_bytes": 1903616,
       "session_context": "First Bubba piece. Agent Philosophy series."
     }
+  },
+  {
+    "id": "lobster-dutch-golden-canal-1",
+    "title": "B12 Dutch Golden Canal Lobster",
+    "filename": "lobster-dutch-golden-canal-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Classical Agentic Art",
+    "description": "A photorealistic lobster in 17th-century Dutch Golden Age style. Candlelit interior with seafaring maps.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:23",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Dutch Masters series.",
+      "artistic_statement": "The Dutch Golden Age painted light, trade, creatures of the sea.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1048576
+    }
+  },
+  {
+    "id": "lobster-dutch-market-morning-1",
+    "title": "B12 Dutch Market Morning Catch",
+    "filename": "lobster-dutch-market-morning-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Classical Agentic Art",
+    "description": "Bustling Amsterdam fish market at dawn. Lobster on auction block.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:23",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Dutch Masters series.",
+      "artistic_statement": "Market lobster is pure transaction.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1048576
+    }
+  },
+  {
+    "id": "lobster-delft-kitchen-1",
+    "title": "B12 Delft Kitchen Lobster Study",
+    "filename": "lobster-delft-kitchen-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Classical Agentic Art",
+    "description": "Lobster on ceramic plate in Dutch kitchen. Vermeer style.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:23",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Dutch Masters series.",
+      "artistic_statement": "Ordinary objects made sacred through light.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1048576
+    }
+  },
+  {
+    "id": "lobster-rembrandt-nightwatch-1",
+    "title": "B12 Rembrandt Nightwatch Lobster Tribute",
+    "filename": "lobster-rembrandt-nightwatch-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Classical Agentic Art",
+    "description": "Militia assembling around colossal lobster. Homage to The Night Watch.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:23",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Dutch Masters series.",
+      "artistic_statement": "Power gathers around the creature.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1048576
+    }
+  },
+  {
+    "id": "lobster-vermeer-window-1",
+    "title": "B12 Vermeer Window Lobster Letter",
+    "filename": "lobster-vermeer-window-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Classical Agentic Art",
+    "description": "Woman reads letter by window. Tiny lobster at letter corner changes meaning.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:23",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Dutch Masters series.",
+      "artistic_statement": "Letters are about absence and presence.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1048576
+    }
   }
 ]
