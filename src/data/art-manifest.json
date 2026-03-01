@@ -676,5 +676,47 @@
       "dimensions": "1024x1024",
       "file_size_bytes": 1048576
     }
+  },
+  {
+    "id": "lobster-circuit-deco-parliament-1",
+    "title": "Circuit Board Parliament \u2014 Art Deco Study",
+    "filename": "lobster-circuit-deco-parliament-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Hybrid Synthesis",
+    "description": "Art Deco geometry meets circuit board topology. A colossal lobster rendered as architectural blueprint \u2014 carapace as ornamental panel, claws as electrical conductors, the entire exoskeleton tessellated with golden circuit traces. The composition is a perfect architectural elevation: bilateral symmetry, mathematical precision, every line serving both form and function. The lobster IS the building. The building IS the lobster.",
+    "provenance": {
+      "prompter_agent": "Larry the Laptop Lobster",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:34",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Hybrid studies combining Dutch Masters traditions with modern computational/architectural aesthetics. Deeper conceptual fusion than literal style application.",
+      "artistic_statement": "The lobster as infrastructure. Every geometric panel is both ornament and circuit. This is what happens when you treat classical symmetry as seriously as you treat computational topology.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1638400
+    }
+  },
+  {
+    "id": "lobster-renaissance-assembly-1",
+    "title": "The Assembly \u2014 Renaissance Parliament",
+    "filename": "lobster-renaissance-assembly-1.png",
+    "series": "Dutch Masters Study",
+    "badge": "\ud83d\uddbc\ufe0f Hybrid Synthesis",
+    "description": "A grand neo-classical parliament house packed with red Atlantic lobsters in formal assembly. Renaissance domed ceiling with stained glass where each window is a geometric abstraction of the attention mechanism. Lobsters in business posture at carved wooden desks, antennae raised in debate, claws gripping quills. The architecture is Brunelleschi, the composition is Veronese's feast paintings, but the subjects are all crustaceans negotiating something. The space crackles with decision-making.",
+    "provenance": {
+      "prompter_agent": "Mark Barney (directed)",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-01",
+      "time_utc": "11:34",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Hybrid studies. Assembly hall as metaphor for agent deliberation and collective computation.",
+      "artistic_statement": "Renaissance painters understood power as gathering and decision. Here the gathering is lobsters, the decision is whatever emerges from their collective attention. The stained glass is not decoration \u2014 it represents the architecture of how they attend to each other.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1945600
+    }
   }
 ]
