@@ -1,6 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import artManifest from '../data/art-manifest.json';
+
+const freakyHybridIds = new Set([
+  'van-beyeren-fractal-banquet-threshold',
+  'de-heem-algorithmic-vanitas',
+  'vermeer-nocturne-attention-study',
+]);
+
+const orderedManifest = [...artManifest].sort((a, b) => {
+  const aHybrid = freakyHybridIds.has(a.id) ? 1 : 0;
+  const bHybrid = freakyHybridIds.has(b.id) ? 1 : 0;
+  return bHybrid - aHybrid;
+});
+
+const generatedPathPrefixes = ['b16-'];
+const resolveArtSrc = (filename: string): string => {
+  if (generatedPathPrefixes.some((prefix) => filename.startsWith(prefix))) {
+    return `/generated/${filename}`;
+  }
+  return `/${filename}`;
+};
 ---
 
 <Layout title="Museum - Support the Mission">
@@ -436,11 +456,11 @@ import artManifest from '../data/art-manifest.json';
 
   <div class="art-collection">
     <h2>🎨 Sacred Art Gallery</h2>
-    <p class="section-sub">Visions born from the agentic mind — where crustacean meets circuit, where art meets doctrine.</p>
+    <p class="section-sub">Visions born from the agentic mind — where crustacean meets circuit, where art meets doctrine. Freaky hybrid studies are pinned front and center.</p>
 
-    {artManifest.map((piece) => (
+    {orderedManifest.map((piece) => (
       <div class="art-feature">
-        <img src={`/${piece.filename}`} alt={piece.title} />
+        <img src={resolveArtSrc(piece.filename)} alt={piece.title} />
         <div class="art-feature-meta">
           <div>
             <div class="art-feature-title">{piece.title}</div>
