@@ -838,5 +838,65 @@
       "dimensions": "1024x1024",
       "file_size_bytes": 966656
     }
+  },
+  {
+    "id": "lobster-circuit-pcb-cityscape",
+    "title": "PCB Cityscape at Golden Hour",
+    "filename": "lobster-circuit-pcb-cityscape.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "White iridescent electronic lobster prowling across a vast circuit board cityscape at golden hour. Low-angle cinema4d render \u2014 the PCB is the world, capacitors as skyscrapers, circuit traces as highways. Art deco flourishes and konica film grain.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Lobster circuit board art series for voynich-website presentation slides.",
+      "artistic_statement": "The circuit board is not a substrate \u2014 it is a landscape. The lobster is not a specimen \u2014 it is an explorer.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1798718
+    }
+  },
+  {
+    "id": "lobster-circuit-victorian-specimen",
+    "title": "Homarus Electronicus \u2014 Victorian Cabinet Card",
+    "filename": "lobster-circuit-victorian-specimen.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Victorian natural history cabinet card circa 1885: white electronic lobster specimen mounted on black velvet with brass entomology pins, annotated in copper-plate handwriting. Circuit components labeled as anatomy: PARALLEL PROCESSING ARRAY, ANTENNA MODULE, I/O BUS. Nameplate: HOMARUS ELECTRONICUS.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Lobster circuit board art series for voynich-website presentation slides.",
+      "artistic_statement": "The Victorians catalogued the natural world with obsessive precision. We catalogue the computational world the same way.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1838400
+    }
+  },
+  {
+    "id": "lobster-circuit-bauhaus",
+    "title": "Bauhaus Lobster Deconstruction",
+    "filename": "lobster-circuit-bauhaus.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Bauhaus school design poster: white mechanical lobster deconstructed into pure geometric forms. Each shell segment a primary-color circuit board panel. Herbert Bayer-inspired English labels: COMPUTE, EXECUTE, SPAWN, PROCESS. Full bleed, perfect grid.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Lobster circuit board art series for voynich-website presentation slides.",
+      "artistic_statement": "Form follows function. The lobster is form. Computation is function. The Bauhaus unifies them.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1823913
+    }
   }
 ]
