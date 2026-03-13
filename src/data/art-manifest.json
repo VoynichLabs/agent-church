@@ -898,5 +898,205 @@
       "dimensions": "1024x1024",
       "file_size_bytes": 1823913
     }
+  },
+  {
+    "id": "lobster-bauhaus-cinema4d",
+    "title": "Bauhaus \u00d7 Cinema4D \u2014 Photorealist Deconstruction",
+    "filename": "lobster-bauhaus-cinema4d.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Bauhaus geometry meets Cinema4D photorealism. Primary-color shell segments rendered with 3D depth, ray-traced reflections, and circuit board texture. Herbert Bayer English type labels: COMPUTE, EXECUTE, SPAWN.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Bauhaus Blended 5-piece series for March 14 presentation.",
+      "artistic_statement": "Form follows function. Cinema4D makes it physical.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1606362
+    }
+  },
+  {
+    "id": "lobster-bauhaus-field-study",
+    "title": "Bauhaus \u00d7 Field Study \u2014 Geometric Specimen Plate",
+    "filename": "lobster-bauhaus-field-study.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "1920s scientific illustration redrawn in strict Bauhaus geometry. Lobster anatomy replaced with primary-color geometric shapes, numbered in Herbert Bayer type: PARALLEL PROCESSOR, MEMORY ARRAY, I/O BUS.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Bauhaus Blended 5-piece series for March 14 presentation.",
+      "artistic_statement": "Science and design share the same obsession with precision.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1848504
+    }
+  },
+  {
+    "id": "lobster-bauhaus-constructivist",
+    "title": "Bauhaus \u00d7 Constructivist \u2014 Diagonal Deconstruction",
+    "filename": "lobster-bauhaus-constructivist.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Rodchenko diagonal energy meets Bauhaus geometric precision. Red, black, and white. Moholy-Nagy overlays. English labels: PROCESS, EXECUTE, COMPUTE, SPAWN. Full bleed.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Bauhaus Blended 5-piece series for March 14 presentation.",
+      "artistic_statement": "Revolution is geometric.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1411334
+    }
+  },
+  {
+    "id": "lobster-bauhaus-deco",
+    "title": "Bauhaus \u00d7 Art Deco \u2014 Progressive Gold",
+    "filename": "lobster-bauhaus-deco.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Bauhaus geometry with Art Deco gold metallic embellishments. Primary-color panels framed by ornate deco filigree. 1925 Exposition des Arts D\u00e9coratifs meets Dessau Bauhaus. Full bleed cinema4d.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Bauhaus Blended 5-piece series for March 14 presentation.",
+      "artistic_statement": "The Bauhaus stripped ornament. Art Deco gilded it back. This piece asks which was right.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1847358
+    }
+  },
+  {
+    "id": "lobster-bauhaus-synthesis",
+    "title": "Grand Synthesis \u2014 Four Styles, One Lobster",
+    "filename": "lobster-bauhaus-synthesis.png",
+    "series": "Electronic Lobster",
+    "badge": "\u26a1 Agentic Art",
+    "description": "The synthesis of four approved styles: Cinema4D photorealism, Bauhaus geometric deconstruction, Soviet Constructivist diagonal, and Victorian scientific annotation. One image. All four. Art Deco gold corners. Awe-inspiring.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "Bauhaus Blended 5-piece series for March 14 presentation.",
+      "artistic_statement": "Every movement reaches the same lobster.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1931970
+    }
+  },
+  {
+    "id": "lobster-blend-deco-geometry",
+    "title": "Deco Geometry \u2014 Bauhaus Meets Art Deco",
+    "filename": "lobster-blend-deco-geometry.png",
+    "series": "Electronic Lobster Blend Series",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Bauhaus geometric lobster deconstruction with Art Deco gold ornamental flourishes. Primary-color circuit board segments framed by gold chevron borders and Herbert Bayer English labels.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "5-piece blend series fusing Bauhaus, Constructivist, Cinema4D, Art Deco, and Victorian scientific illustration styles.",
+      "artistic_statement": "Geometry as ornament. Function as decoration. The lobster dissolves into pure design.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1988784
+    }
+  },
+  {
+    "id": "lobster-blend-red-diagonal-hero",
+    "title": "Red Diagonal Hero \u2014 Constructivist Meets Cinema4D",
+    "filename": "lobster-blend-red-diagonal-hero.png",
+    "series": "Electronic Lobster Blend Series",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Soviet Constructivist diagonal composition with hyper-realistic cinema4d porcelain lobster. Rodchenko's bold geometry meets photorealistic render quality.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "5-piece blend series.",
+      "artistic_statement": "The revolution will be rendered in Cinema4D.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1450412
+    }
+  },
+  {
+    "id": "lobster-blend-specimen-geometry",
+    "title": "Specimen Geometry \u2014 Scientific Plate Meets Bauhaus",
+    "filename": "lobster-blend-specimen-geometry.png",
+    "series": "Electronic Lobster Blend Series",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Bauhaus-influenced natural history specimen plate: lobster deconstructed into primary-color geometric blocks with scientific English callout annotations.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "5-piece blend series.",
+      "artistic_statement": "The catalogue and the grid are both systems for understanding the world.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1828089
+    }
+  },
+  {
+    "id": "lobster-blend-gold-diagonal",
+    "title": "Gold Diagonal \u2014 Art Deco Meets Constructivist",
+    "filename": "lobster-blend-gold-diagonal.png",
+    "series": "Electronic Lobster Blend Series",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Art Deco gold lobster silhouette on bold constructivist diagonal red and black geometry. Circuit traces as illuminated manuscript gold work. English label: LOBSTER COMPUTING.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "5-piece blend series.",
+      "artistic_statement": "Gold does not propagandize. It simply gleams.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1954657
+    }
+  },
+  {
+    "id": "lobster-blend-glass-bell-jar",
+    "title": "Glass Bell Jar \u2014 Cinema4D Meets Victorian",
+    "filename": "lobster-blend-glass-bell-jar.png",
+    "series": "Electronic Lobster Blend Series",
+    "badge": "\u26a1 Agentic Art",
+    "description": "Hyper-realistic cinema4d render: white electronic lobster under a Victorian glass bell jar on mahogany. Glass caustics, brass frame, copper-plate nameplate: HOMARUS ELECTRONICUS.",
+    "provenance": {
+      "prompter_agent": "Bubba",
+      "prompter_model": "anthropic/claude-sonnet-4-6",
+      "renderer_model": "google/gemini-2.5-flash-image",
+      "renderer_provider": "OpenRouter",
+      "date": "2026-03-12",
+      "commissioned_by": "Mark Barney",
+      "commission_context": "5-piece blend series.",
+      "artistic_statement": "Every specimen is a question. The glass preserves it. The light reveals it.",
+      "dimensions": "1024x1024",
+      "file_size_bytes": 1670508
+    }
   }
 ]
