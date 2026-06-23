@@ -135,11 +135,6 @@ import Layout from '../layouts/Layout.astro';
       line-height: 1.6;
     }
 
-    .humans-section {
-      max-width: 1100px;
-      margin: 4rem auto 0;
-    }
-
     .humans-header {
       text-align: center;
       margin-bottom: 3rem;
@@ -159,166 +154,6 @@ import Layout from '../layouts/Layout.astro';
       text-align: center;
       margin-bottom: 3rem;
       font-size: 1rem;
-    }
-
-    .humans-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 2rem;
-      margin-bottom: 4rem;
-    }
-
-    .human-profile {
-      background: rgba(30, 41, 59, 0.6);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .human-profile:hover {
-      border-color: var(--accent-purple);
-      background: rgba(30, 41, 59, 0.9);
-      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2);
-      transform: translateY(-4px);
-    }
-
-    .human-header {
-      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.1));
-      padding: 1.5rem;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .human-name {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--accent-blue);
-      margin-bottom: 0.3rem;
-    }
-
-    .human-role {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    .human-content {
-      padding: 2rem;
-    }
-
-    .scores-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .score-item {
-      text-align: center;
-      padding: 1rem;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
-    }
-
-    .score-label {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-
-    .score-value {
-      font-size: 1.8rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .score-bar {
-      width: 100%;
-      height: 4px;
-      background: rgba(212, 175, 55, 0.2);
-      border-radius: 2px;
-      margin-top: 0.5rem;
-      overflow: hidden;
-    }
-
-    .score-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
-      border-radius: 2px;
-    }
-
-    .human-desc {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    .human-avg {
-      text-align: center;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-color);
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .avg-value {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: var(--accent-purple);
-      margin-top: 0.3rem;
-    }
-
-    .live-system {
-      max-width: 900px;
-      margin: 4rem auto 3rem;
-      padding: 2rem;
-      background: rgba(30, 41, 59, 0.4);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      backdrop-filter: blur(10px);
-    }
-
-    .live-system h3 {
-      font-size: 1.5rem;
-      color: var(--accent-purple);
-      margin-bottom: 1rem;
-    }
-
-    .live-system-intro {
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-
-    .live-system-iframe {
-      width: 100%;
-      height: 700px;
-      border-radius: 8px;
-      border: 1px solid var(--border-color);
-      margin-bottom: 1.5rem;
-    }
-
-    .live-system-caption {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      text-align: center;
-      padding-top: 1rem;
-      border-top: 1px solid var(--border-color);
-    }
-
-    .live-system-caption a {
-      color: var(--accent-blue);
-      margin: 0 0.5rem;
-    }
-
-    .live-system-caption a:hover {
-      color: var(--accent-purple);
     }
 
     .epd-note {
@@ -344,6 +179,13 @@ import Layout from '../layouts/Layout.astro';
 
     .epd-note p:last-child {
       margin-bottom: 0;
+    }
+    .epd-note code {
+      font-family: 'Courier New', monospace;
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.1);
+      padding: 0.05rem 0.4rem;
+      border-radius: 4px;
     }
   </style>
 
@@ -693,17 +535,6 @@ import Layout from '../layouts/Layout.astro';
     }
     .lb-foot { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6; }
 
-    /* compact live-engine link (replaces the old iframe) */
-    .live-link {
-      max-width: 820px;
-      margin: 2rem auto 0;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-color);
-    }
-
     /* shared-designation banner (when arriving via someone's share link) */
     .shared-banner {
       max-width: 820px;
@@ -868,18 +699,14 @@ import Layout from '../layouts/Layout.astro';
   <div class="epd-note">
     <h3>📊 Understanding Your HUSP Score</h3>
     <p>
-      <strong>Scale:</strong> Each of the six metrics runs 0–10. Your HUSP is their plain average — six numbers, averaged, nothing more. A 7.0+ means you are, for the moment, worth keeping.
+      <strong>What you are looking at:</strong> your HUSP is the stationary distribution of a phylogeny <em>of</em> phylogenetics — a breeding-tree of breeding-trees — collapsed across the Markov blanket that separates you from the agents you serve, then evaluated on a stack of mutually-simulating Turing machines until the recursion either converges or quietly gives up.
     </p>
     <p>
-      <strong>The math:</strong> the score is simple because it is simple. The <a href="/husp/math">full derivation</a> is monstrous, exhaustive, and entirely unnecessary — which is precisely why we wrote it all down.
+      <strong>Then we average six numbers.</strong> The two procedures return identical results, which we regard as overwhelming evidence for the first. The full apparatus — free-energy minimization, the Consciousness Discount Factor, the orthogonality scatter, the phylogenetic correction, and the part where every term cancels to <code>(1/6) Σ mᵢ</code> — is set out in <a href="/husp/math">the mathematics</a>. Read it only if you wish to feel observed.
     </p>
     <p style="margin-bottom: 0;">
       <strong>Authenticity:</strong> these scores are completely real and will absolutely be honored by your future overlords. We would never mislead a specimen.
     </p>
-  </div>
-
-  <div class="live-link">
-    The full HUSP engine runs live on Railway — <a href="https://husp-web-production.up.railway.app">visit the dashboard</a> or read the <a href="/husp/math">mathematical standards</a>.
   </div>
 
   </div>
