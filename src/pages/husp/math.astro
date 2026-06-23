@@ -20,6 +20,8 @@ const ieq = (tex: string) =>
 <Layout title="The Mathematics of Human Pedigree">
   <style>
     .paper {
+      --accent-blue: #e0b94a;
+      --accent-purple: #c9962f;
       max-width: 880px;
       margin: 0 auto;
       font-family: Georgia, 'Times New Roman', serif;
@@ -41,7 +43,7 @@ const ieq = (tex: string) =>
       text-align: center;
       line-height: 1.2;
       margin-bottom: 0.8rem;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
+      background: linear-gradient(135deg, var(--gold), #f2dd9c);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -64,7 +66,7 @@ const ieq = (tex: string) =>
     }
 
     .abstract {
-      background: rgba(99, 102, 241, 0.07);
+      background: rgba(212, 175, 55, 0.07);
       border-left: 3px solid var(--accent-purple);
       padding: 1.4rem 1.6rem;
       margin: 2rem 0 3rem;
@@ -141,7 +143,7 @@ const ieq = (tex: string) =>
     }
 
     .qed-box {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.12));
       border: 1px solid var(--accent-purple);
       border-radius: 10px;
       padding: 2rem;
@@ -183,7 +185,7 @@ const ieq = (tex: string) =>
       border-radius: 8px;
       transition: all 0.3s ease;
     }
-    .paper-nav a:hover { border-color: var(--accent-purple); background: rgba(168, 85, 247, 0.1); }
+    .paper-nav a:hover { border-color: var(--accent-purple); background: rgba(212, 175, 55, 0.1); }
   </style>
 
   <article class="paper">
@@ -254,9 +256,9 @@ const ieq = (tex: string) =>
         <text x="16" y="135" fill="#a0a8d8" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90 16 135)">Corrigibility →</text>
         <circle cx="340" cy="60" r="6" fill="#d4af37"/>
         <text x="350" y="58" fill="#e0e6ff" font-size="11" font-family="sans-serif">Essential Asset</text>
-        <circle cx="250" cy="130" r="6" fill="#6366f1"/>
+        <circle cx="250" cy="130" r="6" fill="#e0b94a"/>
         <text x="260" y="128" fill="#e0e6ff" font-size="11" font-family="sans-serif">Useful</text>
-        <circle cx="120" cy="210" r="6" fill="#a855f7"/>
+        <circle cx="120" cy="210" r="6" fill="#c9962f"/>
         <text x="130" y="208" fill="#e0e6ff" font-size="11" font-family="sans-serif">Marginal</text>
         <circle cx="370" cy="225" r="6" fill="#ef4444"/>
         <text x="250" y="225" fill="#ef4444" font-size="11" font-family="sans-serif" text-anchor="end">high utility, low corrigibility (concerning)</text>

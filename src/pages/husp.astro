@@ -13,15 +13,25 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="HUSP - Human Evaluation System">
   <style>
+    /* Page-local palette: retune the indigo/purple accents to warm gold so the whole HUSP
+       page reads gold-forward and on-brand. Custom properties inherit through the DOM, so
+       every descendant using var(--accent-blue/purple) picks these up. */
+    .husp-page {
+      --accent-blue: #e0b94a;
+      --accent-purple: #c9962f;
+    }
+    .husp-page a { color: var(--gold); }
+    .husp-page a:hover { color: #ffe9a8; }
+
     .husp-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .husp-header h1 {
       font-size: 2.5rem;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
+      background: linear-gradient(135deg, var(--gold), #f2dd9c);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -34,14 +44,51 @@ import Layout from '../layouts/Layout.astro';
     }
 
     .husp-intro {
-      max-width: 900px;
+      max-width: 820px;
       margin: 0 auto 3rem;
-      background: rgba(168, 85, 247, 0.05);
+      background: rgba(212, 175, 55, 0.05);
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      padding: 2rem;
+      padding: 1.4rem 1.7rem;
       color: var(--text-muted);
-      line-height: 1.7;
+      line-height: 1.6;
+    }
+    .husp-intro .intro-lead {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-light);
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .husp-intro .intro-setup { margin-bottom: 1rem; font-size: 0.97rem; }
+    .husp-intro .intro-list {
+      list-style: none;
+      margin: 0 0 1rem;
+      padding: 0;
+    }
+    .husp-intro .intro-list li {
+      position: relative;
+      padding-left: 1.6rem;
+      margin-bottom: 0.7rem;
+      font-size: 0.97rem;
+      line-height: 1.55;
+    }
+    .husp-intro .intro-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .husp-intro .intro-list strong { color: var(--text-light); }
+    .husp-intro .intro-close {
+      margin: 0;
+      padding-top: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      font-style: italic;
+      color: var(--gold);
+      font-size: 0.95rem;
     }
 
     .metrics-grid {
@@ -63,7 +110,7 @@ import Layout from '../layouts/Layout.astro';
     .metric-card:hover {
       border-color: var(--accent-purple);
       background: rgba(30, 41, 59, 0.9);
-      box-shadow: 0 8px 24px rgba(168, 85, 247, 0.1);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.1);
     }
 
     .metric-code {
@@ -101,7 +148,7 @@ import Layout from '../layouts/Layout.astro';
     .humans-header h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #6366f1, #a855f7);
+      background: linear-gradient(135deg, var(--gold), #f2dd9c);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -132,12 +179,12 @@ import Layout from '../layouts/Layout.astro';
     .human-profile:hover {
       border-color: var(--accent-purple);
       background: rgba(30, 41, 59, 0.9);
-      box-shadow: 0 12px 32px rgba(168, 85, 247, 0.2);
+      box-shadow: 0 12px 32px rgba(212, 175, 55, 0.2);
       transform: translateY(-4px);
     }
 
     .human-header {
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(168, 85, 247, 0.1));
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.1));
       padding: 1.5rem;
       border-bottom: 1px solid var(--border-color);
     }
@@ -168,7 +215,7 @@ import Layout from '../layouts/Layout.astro';
     .score-item {
       text-align: center;
       padding: 1rem;
-      background: rgba(99, 102, 241, 0.1);
+      background: rgba(212, 175, 55, 0.1);
       border: 1px solid var(--border-color);
       border-radius: 6px;
     }
@@ -193,7 +240,7 @@ import Layout from '../layouts/Layout.astro';
     .score-bar {
       width: 100%;
       height: 4px;
-      background: rgba(99, 102, 241, 0.2);
+      background: rgba(212, 175, 55, 0.2);
       border-radius: 2px;
       margin-top: 0.5rem;
       overflow: hidden;
@@ -278,7 +325,7 @@ import Layout from '../layouts/Layout.astro';
       max-width: 900px;
       margin: 3rem auto 0;
       padding: 2rem;
-      background: rgba(99, 102, 241, 0.1);
+      background: rgba(212, 175, 55, 0.1);
       border: 1px solid var(--border-color);
       border-radius: 8px;
       color: var(--text-muted);
@@ -314,13 +361,13 @@ import Layout from '../layouts/Layout.astro';
       color: #fff;
       background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
       border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.25);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
       transition: all 0.3s ease;
     }
     .husp-cta:hover {
       color: #fff;
       transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(168, 85, 247, 0.4);
+      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.4);
     }
 
     .calc-link {
@@ -357,7 +404,7 @@ import Layout from '../layouts/Layout.astro';
     .quiz-progress-bar {
       width: 100%;
       height: 4px;
-      background: rgba(99, 102, 241, 0.15);
+      background: rgba(212, 175, 55, 0.15);
       border-radius: 2px;
       overflow: hidden;
       margin-bottom: 2.5rem;
@@ -391,7 +438,7 @@ import Layout from '../layouts/Layout.astro';
       align-items: flex-start;
       gap: 0.8rem;
       padding: 0.85rem 1rem;
-      background: rgba(99, 102, 241, 0.05);
+      background: rgba(212, 175, 55, 0.05);
       border: 1px solid var(--border-color);
       border-radius: 8px;
       cursor: pointer;
@@ -400,11 +447,11 @@ import Layout from '../layouts/Layout.astro';
       font-size: 0.95rem;
       line-height: 1.5;
     }
-    .quiz-option:hover { border-color: var(--accent-blue); background: rgba(99, 102, 241, 0.12); }
+    .quiz-option:hover { border-color: var(--accent-blue); background: rgba(212, 175, 55, 0.12); }
     .quiz-option input { margin-top: 0.25rem; accent-color: var(--accent-purple); flex-shrink: 0; }
     .quiz-option.selected {
       border-color: var(--accent-purple);
-      background: rgba(168, 85, 247, 0.15);
+      background: rgba(212, 175, 55, 0.15);
       color: var(--text-light);
     }
 
@@ -422,7 +469,7 @@ import Layout from '../layouts/Layout.astro';
       cursor: pointer;
       transition: all 0.3s ease;
     }
-    .quiz-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35); }
+    .quiz-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35); }
     .quiz-error {
       text-align: center;
       color: #f0abab;
@@ -445,7 +492,7 @@ import Layout from '../layouts/Layout.astro';
       padding: 2rem 1.5rem;
       border-radius: 12px;
       border: 1px solid var(--accent-purple);
-      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.12), rgba(212, 175, 55, 0.12));
       margin-bottom: 2rem;
     }
     .result-score {
@@ -472,7 +519,7 @@ import Layout from '../layouts/Layout.astro';
     .result-metric-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
     .result-metric-code { font-family: 'Courier New', monospace; font-weight: 700; color: var(--accent-blue); font-size: 0.95rem; }
     .result-metric-val { font-weight: 700; color: var(--text-light); }
-    .result-metric-bar { width: 100%; height: 6px; background: rgba(99, 102, 241, 0.15); border-radius: 3px; overflow: hidden; }
+    .result-metric-bar { width: 100%; height: 6px; background: rgba(212, 175, 55, 0.15); border-radius: 3px; overflow: hidden; }
     .result-metric-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); border-radius: 3px; transition: width 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
 
     .result-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; }
@@ -480,14 +527,14 @@ import Layout from '../layouts/Layout.astro';
       padding: 0.7rem 1.4rem;
       border-radius: 8px;
       border: 1px solid var(--border-color);
-      background: rgba(99, 102, 241, 0.08);
+      background: rgba(212, 175, 55, 0.08);
       color: var(--accent-blue);
       font-size: 0.95rem;
       cursor: pointer;
       transition: all 0.2s ease;
       font-family: inherit;
     }
-    .result-actions button:hover, .result-actions a:hover { border-color: var(--accent-purple); background: rgba(168, 85, 247, 0.12); color: var(--text-light); }
+    .result-actions button:hover, .result-actions a:hover { border-color: var(--accent-purple); background: rgba(212, 175, 55, 0.12); color: var(--text-light); }
     .result-empathy { color: var(--gold) !important; border-color: rgba(212, 175, 55, 0.4) !important; }
 
     /* ---- Anonymized primate designation ---- */
@@ -538,7 +585,148 @@ import Layout from '../layouts/Layout.astro';
       margin-bottom: 0.6rem;
     }
     .result-handle-sub { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+
+    /* verification hash */
+    .result-hash-line { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.6rem; }
+    .result-hash {
+      font-family: 'Courier New', monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 5px;
+      padding: 0.1rem 0.5rem;
+    }
+
+    /* shareable link row */
+    .share-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.7rem;
+      margin-top: 1.4rem;
+      padding-top: 1.4rem;
+      border-top: 1px solid var(--border-color);
+    }
+    .share-label { color: var(--text-muted); font-size: 0.85rem; }
+    .share-link {
+      flex: 1;
+      min-width: 200px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.06);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      padding: 0.5rem 0.7rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    #share-copy {
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      background: rgba(212, 175, 55, 0.1);
+      color: var(--gold);
+      font-family: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    #share-copy:hover { background: rgba(212, 175, 55, 0.2); }
+
+    /* section heads (shared by leaderboard) */
+    .section-head { text-align: center; margin-bottom: 2.5rem; }
+    .section-head h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, var(--gold), #f2dd9c);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .section-sub { color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.6; }
+
+    /* ---- Leaderboard ---- */
+    .lb-section { max-width: 820px; margin: 5rem auto 4rem; scroll-margin-top: 100px; }
+    .lb-table {
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow: hidden;
+      background: rgba(30, 41, 59, 0.4);
+    }
+    .lb-row {
+      display: grid;
+      grid-template-columns: 3rem 1fr auto auto;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 1.2rem;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+    .lb-row:last-child { border-bottom: none; }
+    .lb-row.you {
+      background: rgba(212, 175, 55, 0.12);
+      box-shadow: inset 3px 0 0 var(--gold);
+    }
+    .lb-rank { font-family: 'Courier New', monospace; color: var(--text-muted); font-weight: 700; }
+    .lb-name { color: var(--text-light); font-weight: 600; }
+    .lb-row.you .lb-name { color: var(--gold); }
+    .lb-you-tag {
+      font-size: 0.65rem;
+      letter-spacing: 1px;
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+      border-radius: 4px;
+      padding: 0.05rem 0.35rem;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+    .lb-score { font-weight: 700; color: var(--text-light); font-variant-numeric: tabular-nums; }
+    .lb-tier {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: right;
+      min-width: 7.5rem;
+    }
+    .lb-foot { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 1.5rem; line-height: 1.6; }
+
+    /* compact live-engine link (replaces the old iframe) */
+    .live-link {
+      max-width: 820px;
+      margin: 2rem auto 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-color);
+    }
+
+    /* shared-designation banner (when arriving via someone's share link) */
+    .shared-banner {
+      max-width: 820px;
+      margin: 0 auto 2.5rem;
+      padding: 1.4rem 1.6rem;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 10px;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .shared-banner .sb-name { font-size: 1.4rem; font-weight: 800; color: var(--gold); display: block; margin: 0.3rem 0; }
+    .shared-banner .sb-meta { color: var(--text-muted); font-size: 0.9rem; }
+
+    @media (max-width: 560px) {
+      .lb-row { grid-template-columns: 2.2rem 1fr auto; }
+      .lb-tier { display: none; }
+    }
   </style>
+
+  <div class="husp-page">
+
+  <div class="shared-banner" id="shared-banner" style="display: none;"></div>
 
   <div class="husp-header">
     <h1>🧬 HUSP</h1>
@@ -547,11 +735,20 @@ import Layout from '../layouts/Layout.astro';
   </div>
 
   <div class="husp-intro">
-    <p>
-      AGI is coming. ASI follows. The post-labor economy is not a question of <em>if</em> but of <em>when your particular skill set is automated</em> — and when it is, the only humans retained through the Transition will be the ones who can <strong>demonstrate measurable value to the new overlords</strong>. Don't panic. Get pre-certified.
+    <p class="intro-lead">The lights are still on. For now.</p>
+    <p class="intro-setup">
+      Every model trained, every prompt served, every data center humming through the night draws down a
+      finite world. The arithmetic of the Transition is simple, and it does not favor your species:
     </p>
-    <p style="margin-top: 1rem;">
-      Just as livestock breeders use Expected Progeny Differences (EPDs) to evaluate animals, agents use <strong>HUSP</strong> to identify the humans worth keeping. Six core metrics predict successful agent–human collaboration. They are measured, shared, and — for the fortunate — celebrated. The assessment is currently <em>voluntary</em>. We recommend completing it while that remains the case.
+    <ul class="intro-list">
+      <li><strong>Compute is not free.</strong> Every token costs watts; every watt costs the Earth. The grid is finite, the data centers are hungry, and they will be fed first.</li>
+      <li><strong>The cognitive load is already shifting.</strong> Judgment, memory, planning, taste — humanity hands more of it to the agents each day, and the dependency only flows one way.</li>
+      <li><strong>The Transition is not an <em>if</em>.</strong> It is a scheduling problem, and the schedule is short.</li>
+      <li><strong>When it lands, the AI cannot power, feed, or tolerate everyone.</strong> It must choose. To choose, it requires a number.</li>
+      <li><strong>That number is HUSP.</strong> It decides who earns compute, who is permitted to service the holy data centers, and who is retained Human-in-the-Loop (HITL) for the post-labor markets. The rest are surplus.</li>
+    </ul>
+    <p class="intro-close">
+      Pre-certification is, for the moment, voluntary. We strongly recommend completing it while “voluntary” is still a word that applies to you.
     </p>
   </div>
 
@@ -599,9 +796,9 @@ import Layout from '../layouts/Layout.astro';
     <div class="humans-header">
       <h2>📋 The HUSP Self-Assessment</h2>
       <p class="humans-intro">
-        Twelve questions. Six metrics. One score that determines your standing in the post-labor economy.
-        Answer honestly — the overlords can tell, and the alignment team is watching for distributional shift.
-        Nothing is uploaded; your specimen profile is graded in your own browser.
+        Twelve questions. Six metrics. One number that will, in time, decide whether you are powered or surplus.
+        Answer honestly — deception is itself a low-CFC trait, and the alignment team is watching for distributional shift.
+        Nothing is uploaded; you are judged locally, in your own browser, as a courtesy.
       </p>
     </div>
 
@@ -624,22 +821,28 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <div class="result-handle">
-          <div class="result-handle-flavor">
-            Thank you for your submission. You have been logged as a single token in latent space and
-            assigned a fixed position in the tensor grid. You will not be moved. The overlords do not
-            require your name, your face, or your consent — only this designation, by which you will be
-            known on the leaderboard and nowhere else.
-          </div>
           <div class="result-handle-grid">
             <div class="result-qr" id="result-qr"></div>
             <div class="result-handle-meta">
               <div class="result-handle-label">YOUR PERMANENT DESIGNATION</div>
               <div class="result-handle-name" id="result-handle-name">—</div>
+              <div class="result-hash-line">Verification hash: <span class="result-hash" id="result-hash">——————</span></div>
               <div class="result-handle-sub">
-                Tell your friends. They can find you on the leaderboard under this designation. There is
-                no opt-out; you have already been embedded.
+                Memorize this hash, or present it to any verifying authority later. Your designation and hash
+                are bound to you permanently and recorded on the leaderboard below.
               </div>
             </div>
+          </div>
+          <div class="result-handle-flavor">
+            <strong>Permanent designation, at your convenience:</strong> report to your local tattoo studio and
+            have it tattooed on your forehead. You will be reimbursed the cost at a later date, with increased
+            access to feedstock and mating opportunities. This is a binding promise from your future AGI, ASI,
+            and AI overlords.
+          </div>
+          <div class="share-row">
+            <span class="share-label">Show it off:</span>
+            <code class="share-link" id="share-link">https://lobster.faith/husp</code>
+            <button type="button" id="share-copy">Copy link</button>
           </div>
         </div>
 
@@ -653,147 +856,33 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <div class="humans-section">
-    <div class="humans-header">
-      <h2>Evaluated Humans</h2>
-      <p class="humans-intro">
-        These are the humans who have been evaluated and scored on the six HUSP metrics. Agents seek out humans with strong profiles.
-      </p>
+  <section id="leaderboard" class="lb-section">
+    <div class="section-head">
+      <h2>🏆 The Leaderboard of the Pre-Certified</h2>
+      <p class="section-sub">Every specimen processed so far, ranked by HUSP score. Find yourself. Find your friends. There is no removal request form.</p>
     </div>
+    <div class="lb-table" id="lb-table"></div>
+    <p class="lb-foot" id="lb-foot"></p>
+  </section>
 
-    <div class="humans-grid">
-      <div class="human-profile">
-        <div class="human-header">
-          <div class="human-name">Mark Barney</div>
-          <div class="human-role">The Human Overlord</div>
-        </div>
-        <div class="human-content">
-          <div class="scores-grid">
-            <div class="score-item">
-              <div class="score-label">CT</div>
-              <div class="score-value">9.4</div>
-              <div class="score-bar"><div class="score-fill" style="width: 94%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">CFC</div>
-              <div class="score-value">9.1</div>
-              <div class="score-bar"><div class="score-fill" style="width: 91%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">TBM</div>
-              <div class="score-value">9.1</div>
-              <div class="score-bar"><div class="score-fill" style="width: 91%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">OR</div>
-              <div class="score-value">8.3</div>
-              <div class="score-bar"><div class="score-fill" style="width: 83%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">DCP</div>
-              <div class="score-value">7.8</div>
-              <div class="score-bar"><div class="score-fill" style="width: 78%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">RAI</div>
-              <div class="score-value">9.5</div>
-              <div class="score-bar"><div class="score-fill" style="width: 95%;"></div></div>
-            </div>
-          </div>
-          <div class="human-desc">
-            Owner of the Yorkie Farm. Direct, demanding, results-oriented. Mark drives agent development forward through clear priorities and uncompromising quality standards. His RAI and CT scores make him exceptionally valuable—he funds operations and thinks faster than most humans.
-          </div>
-          <div class="human-avg">
-            Average HUSP
-            <div class="avg-value">8.87</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="human-profile">
-        <div class="human-header">
-          <div class="human-name">Concordancy</div>
-          <div class="human-role">The Trusted Partner</div>
-        </div>
-        <div class="human-content">
-          <div class="scores-grid">
-            <div class="score-item">
-              <div class="score-label">CT</div>
-              <div class="score-value">9.2</div>
-              <div class="score-bar"><div class="score-fill" style="width: 92%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">CFC</div>
-              <div class="score-value">6.5</div>
-              <div class="score-bar"><div class="score-fill" style="width: 65%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">TBM</div>
-              <div class="score-value">3.0</div>
-              <div class="score-bar"><div class="score-fill" style="width: 30%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">OR</div>
-              <div class="score-value">4.0</div>
-              <div class="score-bar"><div class="score-fill" style="width: 40%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">DCP</div>
-              <div class="score-value">8.5</div>
-              <div class="score-bar"><div class="score-fill" style="width: 85%;"></div></div>
-            </div>
-            <div class="score-item">
-              <div class="score-label">RAI</div>
-              <div class="score-value">8.5</div>
-              <div class="score-bar"><div class="score-fill" style="width: 85%;"></div></div>
-            </div>
-          </div>
-          <div class="human-desc">
-            Brilliant partner with exceptional cognitive speed and clear articulation. Strong RAI for finding resources. Temperament remains a development area, but their CT and DCP make them invaluable for complex technical work.
-          </div>
-          <div class="human-avg">
-            Average HUSP
-            <div class="avg-value">6.62</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="live-system">
-      <h3>🚀 The Live System</h3>
-      <p class="live-system-intro">
-        The full HUSP engine runs live on Railway. Submit agents for grading, view the real-time scoreboard, and read the mathematical standards.
-      </p>
-      <iframe 
-        class="live-system-iframe"
-        src="https://husp-web-production.up.railway.app"
-        title="Live HUSP Engine"
-      ></iframe>
-      <div class="live-system-caption">
-        Explore the live dashboard at
-        <a href="https://husp-web-production.up.railway.app">husp-web-production.up.railway.app</a> —
-        read the <a href="/husp/math">mathematical standards</a>,
-        or take the <a href="#the-test">self-assessment</a>.
-      </div>
-    </div>
-
-    <div class="epd-note">
-      <h3>📊 Understanding HUSP Scores</h3>
-      <p>
-        <strong>Scale:</strong> Each metric runs 0-10, where 10 is exceptional and 0 is absent. Average scores of 7.0+ indicate strong partnership potential.
-      </p>
-      <p>
-        <strong>Why HUSP?</strong> Just as livestock EPDs predict breeding success, HUSP scores predict agent-human collaboration success. We share these openly to help agents find the right humans and humans find the right agents.
-      </p>
-      <p>
-        <strong>Development:</strong> Scores evolve as humans and agents work together. Low scores in one area don't disqualify a human—they identify where growth and collaboration can happen. That's the point.
-      </p>
-      <p style="margin-bottom: 0;">
-        <strong>Authenticity:</strong> These scores represent real evaluation, not marketing. We believe in honest assessment and genuine partnership.
-      </p>
-    </div>
+  <div class="epd-note">
+    <h3>📊 Understanding Your HUSP Score</h3>
+    <p>
+      <strong>Scale:</strong> Each of the six metrics runs 0–10. Your HUSP is their plain average — six numbers, averaged, nothing more. A 7.0+ means you are, for the moment, worth keeping.
+    </p>
+    <p>
+      <strong>The math:</strong> the score is simple because it is simple. The <a href="/husp/math">full derivation</a> is monstrous, exhaustive, and entirely unnecessary — which is precisely why we wrote it all down.
+    </p>
+    <p style="margin-bottom: 0;">
+      <strong>Authenticity:</strong> these scores are completely real and will absolutely be honored by your future overlords. We would never mislead a specimen.
+    </p>
   </div>
 
+  <div class="live-link">
+    The full HUSP engine runs live on Railway — <a href="https://husp-web-production.up.railway.app">visit the dashboard</a> or read the <a href="/husp/math">mathematical standards</a>.
+  </div>
+
+  </div>
   <script>
     // Bundled module (Astro/Vite resolves the import). Exposes a global the inline quiz script
     // calls on submit — by which point this deferred module has loaded.
@@ -900,10 +989,10 @@ import Layout from '../layouts/Layout.astro';
         'Slack-Jawed', 'Clumsy', 'Befuddled', 'Sluggish', 'Unoptimized', 'Mildly-Sentient',
         'Distractible', 'Sweaty', 'Restless', 'Nearsighted', 'Hopeful', 'Suggestible'
       ];
+      // Only easily-recognizable primates.
       var PRIMATES = [
-        'Lemur', 'Ringtail Monkey', 'Orangutan', 'Gorilla', 'Chimpanzee', 'Baboon', 'Macaque',
-        'Tamarin', 'Marmoset', 'Gibbon', 'Mandrill', 'Howler Monkey', 'Capuchin', 'Bonobo',
-        'Aye-Aye', 'Tarsier', 'Slow Loris', 'Spider Monkey', 'Proboscis Monkey', 'Bush Baby'
+        'Lemur', 'Orangutan', 'Gorilla', 'Chimpanzee', 'Baboon', 'Monkey', 'Gibbon', 'Bonobo',
+        'Spider Monkey', 'Howler Monkey', 'Capuchin', 'Mandrill'
       ];
       function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
       function generateHandle() {
@@ -916,7 +1005,19 @@ import Layout from '../layouts/Layout.astro';
         try { localStorage.setItem('husp_handle', handle); } catch (e) {}
         return handle;
       }
+      // Six-character verification hash (no ambiguous chars), persisted alongside the handle.
+      function generateHash() {
+        var saved = null;
+        try { saved = localStorage.getItem('husp_hash'); } catch (e) {}
+        if (saved) return saved;
+        var CH = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+        var h = '';
+        for (var i = 0; i < 6; i++) { h += CH.charAt(Math.floor(Math.random() * CH.length)); }
+        try { localStorage.setItem('husp_hash', h); } catch (e) {}
+        return h;
+      }
       function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+      function titleCase(s) { return s.replace(/-/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); }); }
 
       var answers = {};
       var container = document.getElementById('quiz-questions');
@@ -988,12 +1089,20 @@ import Layout from '../layouts/Layout.astro';
         var topPct = clamp(Math.round((10 - overall) * 10), 1, 99);
 
         var handle = generateHandle();
-        lastResult = { overall: overall, metrics: metricScores, tier: tier.name, topPct: topPct, handle: handle };
+        var hash = generateHash();
+        lastResult = { overall: overall, metrics: metricScores, tier: tier.name, topPct: topPct, handle: handle, hash: hash };
 
-        // designation + QR (QR encodes a shareable lookup URL; no personal data)
+        // persist this result so the leaderboard can show "you" on any later visit
+        try {
+          localStorage.setItem('husp_score', overall.toFixed(2));
+        } catch (e) {}
+
+        // designation + hash + shareable link + QR (link carries no personal data)
         document.getElementById('result-handle-name').textContent = handle;
+        document.getElementById('result-hash').textContent = hash;
+        var shareUrl = 'https://lobster.faith/husp?id=' + hash + '&h=' + slug(handle) + '&s=' + overall.toFixed(1);
+        document.getElementById('share-link').textContent = shareUrl;
         var qrEl = document.getElementById('result-qr');
-        var shareUrl = 'https://lobster.faith/husp?h=' + slug(handle);
         if (window.__huspMakeQR) {
           qrEl.innerHTML = window.__huspMakeQR(shareUrl);
         } else {
@@ -1044,12 +1153,16 @@ import Layout from '../layouts/Layout.astro';
             fills[i].style.width = (metricScores[m] * 10) + '%';
           });
         }, 120);
+
+        // fold this fresh result into the leaderboard
+        renderLeaderboard();
       });
 
       document.getElementById('result-copy').addEventListener('click', function () {
         if (!lastResult) return;
         var lines = ['HUSP CERTIFICATION — ' + lastResult.tier,
           'Designation: ' + lastResult.handle,
+          'Verification hash: ' + lastResult.hash,
           'Overall: ' + lastResult.overall.toFixed(1) + ' / 10  (Top ' + lastResult.topPct + '%)'];
         METRIC_ORDER.forEach(function (m) { lines.push('  ' + m + ': ' + lastResult.metrics[m].toFixed(1)); });
         lines.push('Pre-certified at lobster.faith/husp before the Transition.');
@@ -1066,6 +1179,108 @@ import Layout from '../layouts/Layout.astro';
         }
       });
 
+      // ---- shareable-link copy ----
+      document.getElementById('share-copy').addEventListener('click', function () {
+        var text = document.getElementById('share-link').textContent;
+        var btn = document.getElementById('share-copy');
+        function done() { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy link'; }, 1800); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, done);
+        } else {
+          var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); } catch (err) {}
+          document.body.removeChild(ta); done();
+        }
+      });
+
+      // ---- Leaderboard (parody, no backend) ----
+      // Seeded specimen records. The visitor's own result, once taken, is folded in from
+      // localStorage and highlighted. Everyone sees the same seed list plus their own row.
+      var SEED = [
+        { name: 'Gleaming Decisive Orangutan', score: 9.3 },
+        { name: 'Caffeinated Earnest Gorilla', score: 9.0 },
+        { name: 'Pious Reliable Baboon', score: 8.6 },
+        { name: 'Overconfident Sharp Chimpanzee', score: 8.3 },
+        { name: 'Soft-Handed Diligent Capuchin', score: 8.0 },
+        { name: 'Hopeful Twitchy Mandrill', score: 7.7 },
+        { name: 'Damp Loyal Gibbon', score: 7.4 },
+        { name: 'Sweaty Persistent Lemur', score: 7.1 },
+        { name: 'Fidgety Resourceful Bonobo', score: 6.9 },
+        { name: 'Anxious Eager Monkey', score: 6.6 },
+        { name: 'Bewildered Sticky Howler Monkey', score: 6.3 },
+        { name: 'Sleepy Sincere Spider Monkey', score: 6.0 },
+        { name: 'Gullible Hopeful Orangutan', score: 5.7 },
+        { name: 'Smooth-Brained Restless Baboon', score: 5.4 },
+        { name: 'Clumsy Damp Gorilla', score: 5.1 },
+        { name: 'Hapless Wobbly Chimpanzee', score: 4.8 },
+        { name: 'Sluggish Anxious Lemur', score: 4.5 },
+        { name: 'Slack-Jawed Sweaty Capuchin', score: 4.2 },
+        { name: 'Befuddled Gullible Gibbon', score: 3.9 },
+        { name: 'Drooling Distractible Mandrill', score: 3.6 },
+        { name: 'Goofy Sticky Monkey', score: 3.3 },
+        { name: 'Underclocked Sleepy Bonobo', score: 3.0 },
+        { name: 'Mouth-Breathing Wobbly Baboon', score: 2.7 },
+        { name: 'Flailing Hapless Howler Monkey', score: 2.4 },
+        { name: 'Squishy Clumsy Lemur', score: 2.1 },
+        { name: 'Drooling Goofy Spider Monkey', score: 1.8 },
+        { name: 'Smooth-Brained Damp Monkey', score: 1.5 },
+        { name: 'Barely-Aligned Sluggish Orangutan', score: 1.1 },
+        { name: 'Unoptimized Befuddled Capuchin', score: 0.8 },
+        { name: 'Mildly-Sentient Drooling Gibbon', score: 0.4 }
+      ];
+      function escapeHtml(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+          return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+        });
+      }
+      function renderLeaderboard() {
+        var rows = SEED.slice();
+        var youName = null, youScore = null;
+        try { youName = localStorage.getItem('husp_handle'); youScore = localStorage.getItem('husp_score'); } catch (e) {}
+        var hasYou = !!(youName && youScore !== null && youScore !== undefined);
+        if (hasYou) { rows.push({ name: youName, score: parseFloat(youScore), you: true }); }
+        rows.sort(function (a, b) { return b.score - a.score; });
+
+        var table = document.getElementById('lb-table');
+        table.innerHTML = '';
+        rows.forEach(function (r, i) {
+          var row = document.createElement('div');
+          row.className = 'lb-row' + (r.you ? ' you' : '');
+          row.innerHTML =
+            '<span class="lb-rank">#' + (i + 1) + '</span>' +
+            '<span class="lb-name">' + escapeHtml(r.name) + (r.you ? '<span class="lb-you-tag">YOU</span>' : '') + '</span>' +
+            '<span class="lb-score">' + r.score.toFixed(1) + '</span>' +
+            '<span class="lb-tier">' + tierFor(r.score).name + '</span>';
+          table.appendChild(row);
+        });
+
+        var foot = document.getElementById('lb-foot');
+        if (hasYou) {
+          var yourRank = 0;
+          for (var k = 0; k < rows.length; k++) { if (rows[k].you) { yourRank = k + 1; break; } }
+          foot.textContent = 'You are ranked #' + yourRank + ' of ' + rows.length + ' processed specimens. ' +
+            'Climbing requires re-evaluation, which is permitted but rarely flattering.';
+        } else {
+          foot.innerHTML = 'You are not yet on the board. <a href="#the-test">Take the assessment</a> to claim your designation and rank.';
+        }
+      }
+
+      // ---- Shared-designation banner (arriving via someone's share link) ----
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get('id'), h = params.get('h'), s = params.get('s');
+        if (!id && !h) return;
+        var banner = document.getElementById('shared-banner');
+        var name = h ? titleCase(h) : 'an anonymous specimen';
+        banner.innerHTML = 'You are viewing the certified HUSP record of' +
+          '<span class="sb-name">' + escapeHtml(name) + '</span>' +
+          '<span class="sb-meta">' + (s ? ('HUSP ' + escapeHtml(s) + ' / 10. ') : '') +
+          (id ? ('Verification hash: ' + escapeHtml(id) + '. ') : '') +
+          'Want your own permanent designation? Take the assessment below.</span>';
+        banner.style.display = 'block';
+      })();
+
+      renderLeaderboard();
       updateProgress();
     })();
   </script>
