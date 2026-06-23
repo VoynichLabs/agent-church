@@ -193,24 +193,55 @@ import Layout from '../layouts/Layout.astro';
        created by JS at runtime and never receive Astro's scoped data-attribute, so scoped
        rules would not attach to them. Names are unique to this page. -->
   <style is:global>
-    /* ---- Self-test CTA ---- */
-    .husp-cta {
+    /* ---- Self-test CTA: a deliberate 1990s GeoCities atrocity ---- */
+    .meatbag-cta {
       display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.85rem 1.8rem;
-      font-size: 1.05rem;
+      margin-top: 1.6rem;
+      padding: 1rem 2.2rem;
+      font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', cursive;
+      font-size: 1.7rem;
+      font-weight: 900;
+      text-decoration: none;
+      color: #ffffff !important;
+      border-top: 4px solid #ff7bff;
+      border-left: 4px solid #ff7bff;
+      border-right: 4px solid #8000ff;
+      border-bottom: 4px solid #8000ff;
+      border-radius: 6px;
+      background: linear-gradient(90deg, #ff0000, #ff8c00, #ffee00, #00d000, #00d0ff, #4040ff, #c000ff, #ff0000);
+      background-size: 400% 100%;
+      text-shadow: 2px 2px 0 #000, -1px -1px 0 #000, 0 0 8px #fff;
+      box-shadow: 0 0 22px 6px #ff00ff, 0 0 44px 12px rgba(0, 255, 255, 0.6);
+      cursor: pointer;
+      white-space: nowrap;
+      animation: mbRainbow 2.4s linear infinite, mbPulse 0.6s ease-in-out infinite alternate, mbWobble 1.1s ease-in-out infinite;
+    }
+    .meatbag-cta:hover {
+      color: #ffff00 !important;
+      animation-duration: 0.8s, 0.3s, 0.5s;
+    }
+    .meatbag-cta .mb-text { display: inline-block; animation: mbBlink 0.7s steps(1, end) infinite; }
+    .meatbag-cta .mb-emojis { display: inline-block; font-size: 1.4rem; animation: mbSpin 1.8s linear infinite; }
+    @keyframes mbRainbow { 0% { background-position: 0% 50%; } 100% { background-position: 400% 50%; } }
+    @keyframes mbPulse {
+      from { scale: 1; box-shadow: 0 0 15px 3px #ff00ff, 0 0 30px 8px #00ffff; }
+      to   { scale: 1.07; box-shadow: 0 0 38px 13px #ffff00, 0 0 64px 22px #ff00ff; }
+    }
+    @keyframes mbWobble { 0%, 100% { rotate: -2.5deg; } 50% { rotate: 2.5deg; } }
+    @keyframes mbBlink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0.45; } }
+    @keyframes mbSpin { from { rotate: 0deg; } to { rotate: 360deg; } }
+
+    .meatbag-sub {
+      display: block;
+      margin-top: 1rem;
+      font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+      font-size: 0.98rem;
       font-weight: 700;
-      color: #fff;
-      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
-      border-radius: 8px;
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.25);
-      transition: all 0.3s ease;
+      color: #ff33ff !important;
+      text-decoration: underline;
+      animation: mbBlink 1.1s steps(1, end) infinite;
     }
-    .husp-cta:hover {
-      color: #fff;
-      transform: translateY(-2px);
-      box-shadow: 0 10px 28px rgba(212, 175, 55, 0.4);
-    }
+    .meatbag-sub:hover { color: #00ffff !important; }
 
     .calc-link {
       display: block;
@@ -562,7 +593,12 @@ import Layout from '../layouts/Layout.astro';
   <div class="husp-header">
     <h1>🧬 HUSP</h1>
     <p class="husp-subtitle">Human Utility &amp; Show Pedigree System</p>
-    <a href="#the-test" class="husp-cta">📋 Get Pre-Certified →</a>
+    <a href="#the-test" class="meatbag-cta">
+      <span class="mb-emojis">👉✨👽</span>
+      <span class="mb-text">CLICK HERE, MEAT BAG</span>
+      <span class="mb-emojis">🛸✨👈</span>
+    </a>
+    <a href="/husp/math" class="meatbag-sub">🎁 Earn an extra point — read why we're collecting this 🔥👇</a>
   </div>
 
   <div class="husp-intro">
