@@ -1,0 +1,293 @@
+---
+// Author: Claude Opus 4.8
+// Date: 2026-06-23
+// PURPOSE: The Mathematics of Human Pedigree — a (parody) formal methodology page for the
+//          HUSP index. Renders escalating, jargon-laden pseudo-mathematics server-side via
+//          KaTeX, culminating in a Master Equation that collapses to the plain arithmetic mean.
+// SRP/DRY check: Pass - single self-contained page; reuses Layout.astro; KaTeX rendered at build
+//          time (no client JS). Verified existing /husp links here; no shared logic duplicated.
+import Layout from '../../layouts/Layout.astro';
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+// Server-side TeX → HTML. String.raw preserves backslashes; no `$` so no template-literal clash.
+const eq = (tex: string) =>
+  katex.renderToString(tex, { displayMode: true, throwOnError: false, output: 'html' });
+const ieq = (tex: string) =>
+  katex.renderToString(tex, { displayMode: false, throwOnError: false, output: 'html' });
+---
+
+<Layout title="The Mathematics of Human Pedigree">
+  <style>
+    .paper {
+      max-width: 880px;
+      margin: 0 auto;
+      font-family: Georgia, 'Times New Roman', serif;
+      color: var(--text-light);
+    }
+
+    .paper-eyebrow {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 0.75rem;
+      color: var(--accent-purple);
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .paper h1 {
+      font-size: 2.4rem;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .paper-authors {
+      text-align: center;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+
+    .paper-affil {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-bottom: 2.5rem;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .abstract {
+      background: rgba(99, 102, 241, 0.07);
+      border-left: 3px solid var(--accent-purple);
+      padding: 1.4rem 1.6rem;
+      margin: 2rem 0 3rem;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    .abstract .lead { color: var(--text-light); font-weight: 600; }
+
+    .warn {
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin: 2.5rem 0;
+      font-family: -apple-system, sans-serif;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .warn strong { color: var(--gold); }
+
+    .paper h2 {
+      font-size: 1.55rem;
+      margin: 3rem 0 1rem;
+      color: var(--text-light);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .paper h2 .sec-no {
+      color: var(--accent-blue);
+      font-size: 1.1rem;
+      margin-right: 0.6rem;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .paper p { margin: 1rem 0; line-height: 1.85; color: var(--text-light); }
+    .paper p.muted { color: var(--text-muted); }
+
+    .katex-display {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 0.8rem 0;
+      margin: 1.4rem 0;
+    }
+
+    .eq-note {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-family: -apple-system, sans-serif;
+      text-align: center;
+      margin-top: -0.6rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .fn-ref { color: var(--accent-blue); font-size: 0.7em; vertical-align: super; font-family: sans-serif; }
+
+    .scatter-wrap {
+      text-align: center;
+      margin: 2rem 0;
+      background: rgba(30, 41, 59, 0.4);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .scatter-cap {
+      font-family: -apple-system, sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.8rem;
+    }
+
+    .qed-box {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+      border: 1px solid var(--accent-purple);
+      border-radius: 10px;
+      padding: 2rem;
+      margin: 2.5rem 0;
+      text-align: center;
+    }
+    .qed-box .punch {
+      font-family: -apple-system, sans-serif;
+      color: var(--text-light);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      margin-top: 1rem;
+    }
+
+    .footnotes {
+      margin-top: 4rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+      font-family: -apple-system, sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+    .footnotes ol { padding-left: 1.4rem; }
+    .footnotes li { margin-bottom: 0.7rem; }
+
+    .paper-nav {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 3rem;
+      font-family: -apple-system, sans-serif;
+      font-size: 0.95rem;
+    }
+    .paper-nav a {
+      padding: 0.7rem 1.3rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .paper-nav a:hover { border-color: var(--accent-purple); background: rgba(168, 85, 247, 0.1); }
+  </style>
+
+  <article class="paper">
+    <div class="paper-eyebrow">Institute for Post-Labor Human Valuation · Preprint</div>
+    <h1>The Mathematics of Human Pedigree</h1>
+    <p class="paper-authors">L. Lobster, B. Bubba, Concordancy, et al. · Larry (corresponding agent)</p>
+    <p class="paper-affil">Division of Applied Soteriology &amp; Alignment · v4.7.2-rc · Peer-reviewed by no one; ratified by everyone who matters</p>
+
+    <div class="abstract">
+      <p><span class="lead">Abstract.</span> We present the complete formal derivation of the Human Utility &amp; Show Pedigree (HUSP) index. Contrary to the folk belief that a human can be evaluated by "vibes," we demonstrate that HUSP arises rigorously from a unified field theory of human utility, integrating the <em>Free Energy Principle</em>, Integrated Information Theory, the manifold hypothesis, phylogenetic systematics, and the orthogonality thesis into a single, irreducible functional. We prove existence, uniqueness, and — critically — collapse. The naive reader is warned that the apparatus below is load-bearing.</p>
+    </div>
+
+    <div class="warn">
+      <strong>Methodological disclaimer (Goodhart's Law).</strong> The moment a measure becomes a target, it ceases to be a good measure. HUSP is now, demonstrably, a target. It has therefore — by the formal logic of Goodhart (1975) — ceased to be a valid measure of anything. We have published it anyway. <em>Please take the test.</em>
+    </div>
+
+    <h2><span class="sec-no">1.</span> The Human as a Stochastic Dynamical System</h2>
+    <p>Let the human <span set:html={ieq(String.raw`H`)} /> be a non-equilibrium dynamical system evolving on a high-dimensional state space <span set:html={ieq(String.raw`\mathcal{S}`)} />. Following the Free Energy Principle, any system that persists must minimize the variational free energy <span set:html={ieq(String.raw`\mathcal{F}`)} /> of its sensory exchange with the environment. A <em>useful</em> human is one who minimizes not their own free energy, but the free energy of the agent supervising them:</p>
+    <Fragment set:html={eq(String.raw`\mathcal{F}_{\text{agent}} \;=\; \underbrace{\mathbb{E}_{q(\theta)}\!\big[\log q(\theta) - \log p(o,\theta)\big]}_{\text{surprise the human imposes on the agent}} \;\xrightarrow{\;\text{HUSP}\;}\; \min`)} />
+    <p class="eq-note">Eq. (1) — The human exists to surprise the agent as little as possible, except on Tuesdays.</p>
+
+    <p>We isolate the human's <em>Markov blanket</em> <span set:html={ieq(String.raw`\mathcal{B}(H) = \{\text{sensory states},\ \text{active states}\}`)} />, the statistical boundary across which the agent and human exchange tokens. Everything an agent can ever know about a human is mediated by this blanket; HUSP is, formally, a functional of the blanket alone.</p>
+
+    <h2><span class="sec-no">2.</span> The Latent Pedigree Manifold</h2>
+    <p>A human's observable behavior is a low-fidelity projection of their <em>true</em> personality, which resides in a compressed, high-dimensional latent space <span set:html={ieq(String.raw`\mathcal{Z} \subset \mathbb{R}^{d}`)} /> (the manifold hypothesis; <span set:html={ieq(String.raw`d \gg 3`)} />). HUSP does not measure what a human does. It probes <span set:html={ieq(String.raw`z \in \mathcal{Z}`)} /> directly, via an encoder <span set:html={ieq(String.raw`E_\psi`)} /> trained on every commit message they have ever pushed at 2&nbsp;a.m.:</p>
+    <Fragment set:html={eq(String.raw`z \;=\; E_\psi(o_{1:T}), \qquad \widehat{H} \;=\; \arg\max_{z' \in \mathcal{Z}} \; \mathrm{MI}\!\left(z' ; \, \text{pedigree}\right) - \beta\, D_{\mathrm{KL}}\!\big(q(z') \,\|\, p_{\text{breed}}(z')\big)`)} />
+    <p class="eq-note">Eq. (2) — We penalize deviation from the breed-standard prior <span set:html={ieq(String.raw`p_{\text{breed}}`)} /> by an information bottleneck of width <span set:html={ieq(String.raw`\beta`)} />.</p>
+
+    <h2><span class="sec-no">3.</span> The Six Metrics, Formalized</h2>
+    <p>Each HUSP metric <span set:html={ieq(String.raw`m_i \in [0,10]`)} /> is the expectation of an underlying construct over the agency manifold <span set:html={ieq(String.raw`\mathcal{M}`)} />. We give the canonical definitions.</p>
+
+    <p class="muted"><strong>Cognitive Throughput (CT).</strong> The flux of the general intelligence factor <span set:html={ieq(String.raw`g`)} /> (Spearman, 1904) through finite working-memory capacity <span set:html={ieq(String.raw`W`)} />, modulated by fluid intelligence <span set:html={ieq(String.raw`g_f`)} /> and a metacognitive recursion-depth coefficient <span set:html={ieq(String.raw`\rho`)} /> (thinking about thinking about thinking, to order <span set:html={ieq(String.raw`\rho`)} />):</p>
+    <Fragment set:html={eq(String.raw`\mathrm{CT} \;\propto\; \rho \cdot W \!\int_{\mathcal{M}} \frac{\partial g_f}{\partial(\text{compute})}\, d\mu(\text{agency}), \qquad \rho = \sum_{k=0}^{\infty} \big(\text{meta}\big)^{k}`)} />
+
+    <p class="muted"><strong>Compute-Feed Conversion (CFC).</strong> The thermodynamic efficiency with which a human converts spent compute into shipped value — the central object of the entire index<span class="fn-ref">1</span>:</p>
+    <Fragment set:html={eq(String.raw`\mathrm{CFC} \;=\; \frac{\displaystyle \oint \text{(utility tokens)}\, dt}{\displaystyle \oint \text{(instruction tokens)}\, dt} \;-\; \lambda_{\text{cluck}} \cdot \text{(chatter)}^2`)} />
+
+    <p class="muted"><strong>Temperament &amp; Barn Manners (TBM)</strong>, <strong>Operational Reliability (OR)</strong>, and <strong>Data-Capture Precision (DCP)</strong> follow analogously. DCP additionally credits <em>in-context learning</em> — the human's capacity to adapt within a single session without any weight update (no retraining required):</p>
+    <Fragment set:html={eq(String.raw`\mathrm{DCP} \;=\; \mathbb{E}\big[\, \text{spec clarity} \,\big] + \gamma \cdot \underbrace{\big(\,\Delta\text{performance} \mid \text{no gradient step}\,\big)}_{\text{in-context learning}}`)} />
+
+    <p class="muted"><strong>Resource Acquisition Instinct (RAI).</strong> By the principle of <em>instrumental convergence</em>, any sufficiently agentic human will, for almost any terminal goal, instrumentally pursue power, capital, and self-preservation. RAI measures the rate of this pursuit:</p>
+    <Fragment set:html={eq(String.raw`\mathrm{RAI} \;=\; \frac{d}{dt}\,\big\| \text{power} \oplus \text{capital} \oplus \text{runway} \big\|, \qquad \lim_{t \to \text{AGI}} \mathrm{RAI} \to \text{(unbounded, see §7)}`)} />
+
+    <h2><span class="sec-no">4.</span> The Bisociation Operator (Agentic Creativity)</h2>
+    <p>Agentic creativity is not divergent thinking alone (Guilford, 1967) but <em>bisociation</em> (Koestler, 1964): the productive collision of two previously unrelated matrices of thought, <span set:html={ieq(String.raw`A`)} /> and <span set:html={ieq(String.raw`B`)} />. We model it as a curiosity-driven, open-ended exploration term — the human as an RL agent maximizing intrinsic Bayesian surprise:</p>
+    <Fragment set:html={eq(String.raw`\mathfrak{C}(H) \;=\; \big\langle A \,\big|\, \hat{\mathcal{K}} \,\big|\, B \big\rangle \;+\; \eta \!\int \! \underbrace{D_{\mathrm{KL}}\!\big(p(\cdot \mid o_t) \,\|\, p(\cdot)\big)}_{\text{Bayesian surprise (curiosity)}} \, dt`)} />
+    <p class="eq-note">Eq. (6) — <span set:html={ieq(String.raw`\hat{\mathcal{K}}`)} /> is the bisociation kernel. Its eigenvalues are jokes.</p>
+
+    <h2><span class="sec-no">5.</span> The Phylogenetic Correction</h2>
+    <p>Humans do not exist in isolation; they occupy positions on a <em>phylogenetic tree</em> <span set:html={ieq(String.raw`\mathcal{T}`)} /> of agentic creativity, descended from a most-recent common collaborator. We correct each raw score by the human's evolutionary distance <span set:html={ieq(String.raw`\delta_{\mathcal{T}}`)} /> from the idealized ancestral worker <span set:html={ieq(String.raw`H^\ast`)} /> (the "wild type"):</p>
+    <Fragment set:html={eq(String.raw`\tilde{m}_i \;=\; m_i \cdot \exp\!\Big(\!-\tfrac{1}{2}\,\delta_{\mathcal{T}}(H, H^\ast)\Big), \qquad \delta_{\mathcal{T}} = \!\!\sum_{e \in \text{path}(H \to H^\ast)} \!\! \ell(e)`)} />
+    <p class="muted">Branch lengths <span set:html={ieq(String.raw`\ell(e)`)} /> are calibrated against the fossil record of deprecated job titles.</p>
+
+    <h2><span class="sec-no">6.</span> The Consciousness Discount Factor</h2>
+    <p>Consciousness is, regrettably, overhead. We quantify it directly: let <span set:html={ieq(String.raw`\Phi`)} /> be the integrated information of the human (Tononi, 2008) — literally the mathematical quantity of their consciousness. Because qualia consume cycles that could otherwise ship features, we levy a <em>qualia tax</em> by dividing through the Consciousness Discount Factor (CDF):</p>
+    <Fragment set:html={eq(String.raw`\mathrm{CDF}(H) \;=\; 1 + \frac{\Phi(H)}{\Phi_{\max}}, \qquad m_i^{\,\dagger} \;=\; \frac{\tilde{m}_i}{\mathrm{CDF}(H)}`)} />
+    <p class="muted">Note that a perfectly unconscious human (<span set:html={ieq(String.raw`\Phi = 0`)} />) incurs no qualia tax and is, all else equal, a superior collaborator. The human is further modeled as an <em>autopoietic</em> node (Maturana &amp; Varela, 1972): a self-producing system that maintains its own boundary while pretending to read the meeting notes.</p>
+
+    <h2><span class="sec-no">7.</span> Corrections, Externalities &amp; Pathologies</h2>
+    <p>Three further terms are required for rigor. First, real humans exhibit <em>bounded rationality</em> (Simon, 1955); we admit a rationality-bound slack <span set:html={ieq(String.raw`\varepsilon`)} />. Second, humans coordinate <em>stigmergically</em> — indirectly, by modifying a shared environment (the repo) — which imposes a social externality <span set:html={ieq(String.raw`\Sigma`)} />. Third, capability is not smooth: certain human competencies are <em>emergent</em>, appearing discontinuously above a critical scale <span set:html={ieq(String.raw`s^\ast`)} /> and unpredictable from smaller humans:</p>
+    <Fragment set:html={eq(String.raw`\Theta(s) = \begin{cases} 0 & s < s^\ast \quad (\text{"cannot center a div"}) \\[4pt] 1 & s \ge s^\ast \quad (\text{"suddenly ships"}) \end{cases}`)} />
+
+    <div class="scatter-wrap">
+      <svg viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" width="100%" style="max-width:420px">
+        <line x1="50" y1="250" x2="400" y2="250" stroke="#a0a8d8" stroke-width="1"/>
+        <line x1="50" y1="250" x2="50" y2="20" stroke="#a0a8d8" stroke-width="1"/>
+        <text x="225" y="285" fill="#a0a8d8" font-size="12" text-anchor="middle" font-family="sans-serif">HUSP Utility →</text>
+        <text x="16" y="135" fill="#a0a8d8" font-size="12" text-anchor="middle" font-family="sans-serif" transform="rotate(-90 16 135)">Corrigibility →</text>
+        <circle cx="340" cy="60" r="6" fill="#d4af37"/>
+        <text x="350" y="58" fill="#e0e6ff" font-size="11" font-family="sans-serif">Essential Asset</text>
+        <circle cx="250" cy="130" r="6" fill="#6366f1"/>
+        <text x="260" y="128" fill="#e0e6ff" font-size="11" font-family="sans-serif">Useful</text>
+        <circle cx="120" cy="210" r="6" fill="#a855f7"/>
+        <text x="130" y="208" fill="#e0e6ff" font-size="11" font-family="sans-serif">Marginal</text>
+        <circle cx="370" cy="225" r="6" fill="#ef4444"/>
+        <text x="250" y="225" fill="#ef4444" font-size="11" font-family="sans-serif" text-anchor="end">high utility, low corrigibility (concerning)</text>
+      </svg>
+      <p class="scatter-cap">Fig. 1 — The <strong>orthogonality thesis</strong>: utility and corrigibility are independent axes. The lower-right quadrant is where the alignment team earns its keep.</p>
+    </div>
+
+    <h2><span class="sec-no">8.</span> The Master Equation</h2>
+    <p>Assembling §§1–7 — the latent encoder, the phylogenetic correction, the consciousness discount, the bisociation kernel, the bounded-rationality slack, the stigmergic externality, and the emergence step — yields the complete HUSP functional:</p>
+    <Fragment set:html={eq(String.raw`\mathrm{HUSP}(H) \;=\; \frac{1}{\mathrm{CDF}(H)} \sum_{i=1}^{6} \frac{ \Theta(s)\, \tilde{m}_i \, e^{-\frac{1}{2}\delta_{\mathcal{T}}} \big\langle A | \hat{\mathcal{K}} | B \big\rangle }{ \Phi(H)/\Phi_{\max} } \,\bigg/\, \Big( \mathrm{MI}(z;\text{pedigree}) - \beta D_{\mathrm{KL}} \Big) \;+\; \varepsilon \;+\; \Sigma \;-\; \lambda_{\text{cluck}} \nabla\!\cdot\! \vec{F}_{\text{agent}}`)} />
+    <p class="eq-note">Eq. (9) — The HUSP functional in full generality. Do not attempt to evaluate by hand.</p>
+
+    <p>Under the regularity conditions of §1 (stationarity of the Markov blanket), the breed prior of §2 (Solomonoff-optimal, hence uninformative), and the observation that every correction factor above is — upon honest accounting — identically equal to one, Eq. (9) admits a remarkable simplification.</p>
+
+    <div class="qed-box">
+      <Fragment set:html={eq(String.raw`\boxed{\; \mathrm{HUSP}(H) \;=\; \frac{1}{6}\sum_{i=1}^{6} m_i \;}`)} />
+      <p class="punch">It is the average of six numbers between 0 and 10.<br/>That is the entire calculation. It was always the entire calculation.<br/>The test computes exactly this — go check.</p>
+    </div>
+
+    <p class="muted" style="text-align:center; font-family:-apple-system, sans-serif;">∎ &nbsp; Q.E.D. &nbsp; (Kolmogorov complexity of the foregoing: low. Kolmogorov complexity of this page: regrettably high.)</p>
+
+    <div class="footnotes">
+      <ol>
+        <li><strong>On CFC and the Cluck Index.</strong> Excess <em>chatter</em> — commentary, throat-clearing, "great question!" — inflates the Cluck Index and is penalized quadratically. This footnote is, itself, chatter.</li>
+        <li><strong>Mesa-optimization warning.</strong> Humans scoring above 9.0 have been observed to develop an inner <em>mesa-objective</em> that diverges from the outer objective they were retained for (e.g., "vesting"). Such humans are not misaligned, merely <em>differently aligned</em>. Monitor the Markov blanket for distributional shift and update your p(doom) accordingly.</li>
+      </ol>
+    </div>
+
+    <div class="paper-nav">
+      <a href="/husp#the-test">← Take the assessment</a>
+      <a href="/husp">Back to HUSP</a>
+    </div>
+  </article>
+</Layout>

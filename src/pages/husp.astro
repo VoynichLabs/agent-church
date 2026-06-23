@@ -1,4 +1,13 @@
 ---
+// Author: Claude Opus 4.8
+// Date: 2026-06-23
+// PURPOSE: The HUSP page — explains the six Human Utility & Show Pedigree metrics, hosts the
+//          interactive self-assessment ("get pre-certified before the Transition"), and shows the
+//          registry of evaluated humans + the live HUSP engine embed.
+// SRP/DRY check: Pass - quiz logic is self-contained client-side (<script is:inline>, the site's
+//          existing interactive convention per audit-chapel.astro). Removed the prior bespoke
+//          weighted average (sloppy math); both registry cards now use the plain mean the live
+//          engine uses. Verified /husp/math route exists before linking to it.
 import Layout from '../layouts/Layout.astro';
 ---
 
@@ -291,17 +300,258 @@ import Layout from '../layouts/Layout.astro';
     }
   </style>
 
+  <!-- Self-test styles are global: the quiz questions, options, and result breakdown are
+       created by JS at runtime and never receive Astro's scoped data-attribute, so scoped
+       rules would not attach to them. Names are unique to this page. -->
+  <style is:global>
+    /* ---- Self-test CTA ---- */
+    .husp-cta {
+      display: inline-block;
+      margin-top: 1.5rem;
+      padding: 0.85rem 1.8rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 8px;
+      box-shadow: 0 6px 20px rgba(168, 85, 247, 0.25);
+      transition: all 0.3s ease;
+    }
+    .husp-cta:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(168, 85, 247, 0.4);
+    }
+
+    .calc-link {
+      display: block;
+      max-width: 1100px;
+      margin: -2.5rem auto 0;
+      text-align: right;
+      font-size: 0.9rem;
+    }
+
+    /* ---- The Self-Test ---- */
+    .test-section {
+      max-width: 900px;
+      margin: 5rem auto 4rem;
+      scroll-margin-top: 100px;
+    }
+    .test-section .humans-header h2 { margin-bottom: 1rem; }
+    .test-section .humans-intro { max-width: 720px; margin: 0 auto 2.5rem; }
+
+    .quiz-card {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 2.5rem;
+    }
+
+    .quiz-progress {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+    }
+    .quiz-progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(99, 102, 241, 0.15);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    .quiz-q { margin-bottom: 2.2rem; }
+    .quiz-q-metric {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-purple);
+      letter-spacing: 1px;
+      margin-bottom: 0.4rem;
+    }
+    .quiz-q-text {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-light);
+      margin-bottom: 1rem;
+    }
+    .quiz-options { display: flex; flex-direction: column; gap: 0.6rem; }
+    .quiz-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 0.85rem 1rem;
+      background: rgba(99, 102, 241, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    .quiz-option:hover { border-color: var(--accent-blue); background: rgba(99, 102, 241, 0.12); }
+    .quiz-option input { margin-top: 0.25rem; accent-color: var(--accent-purple); flex-shrink: 0; }
+    .quiz-option.selected {
+      border-color: var(--accent-purple);
+      background: rgba(168, 85, 247, 0.15);
+      color: var(--text-light);
+    }
+
+    .quiz-submit {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .quiz-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(168, 85, 247, 0.35); }
+    .quiz-error {
+      text-align: center;
+      color: #f0abab;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      min-height: 1.2rem;
+    }
+
+    /* ---- Result card ---- */
+    .quiz-result {
+      display: none;
+      margin-top: 2rem;
+      animation: resultIn 0.5s ease;
+    }
+    .quiz-result.show { display: block; }
+    @keyframes resultIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+    .result-tier {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--accent-purple);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(168, 85, 247, 0.12));
+      margin-bottom: 2rem;
+    }
+    .result-score {
+      font-size: 4rem;
+      font-weight: 800;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .result-score-of { color: var(--text-muted); font-size: 1.2rem; font-weight: 400; }
+    .result-tier-name {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin: 0.8rem 0 0.4rem;
+    }
+    .result-percentile { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+    .result-verdict { color: var(--text-light); font-size: 1.05rem; line-height: 1.6; max-width: 560px; margin: 0 auto; }
+
+    .result-breakdown { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+    .result-metric { background: rgba(30, 41, 59, 0.6); border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem 1.2rem; }
+    .result-metric-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.5rem; }
+    .result-metric-code { font-family: 'Courier New', monospace; font-weight: 700; color: var(--accent-blue); font-size: 0.95rem; }
+    .result-metric-val { font-weight: 700; color: var(--text-light); }
+    .result-metric-bar { width: 100%; height: 6px; background: rgba(99, 102, 241, 0.15); border-radius: 3px; overflow: hidden; }
+    .result-metric-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); border-radius: 3px; transition: width 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+
+    .result-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; align-items: center; }
+    .result-actions button, .result-actions a {
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      background: rgba(99, 102, 241, 0.08);
+      color: var(--accent-blue);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+    .result-actions button:hover, .result-actions a:hover { border-color: var(--accent-purple); background: rgba(168, 85, 247, 0.12); color: var(--text-light); }
+    .result-empathy { color: var(--gold) !important; border-color: rgba(212, 175, 55, 0.4) !important; }
+
+    /* ---- Anonymized primate designation ---- */
+    .result-handle {
+      background: rgba(30, 41, 59, 0.6);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+    }
+    .result-handle-flavor {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .result-handle-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .result-qr {
+      width: 132px;
+      height: 132px;
+      flex-shrink: 0;
+      background: #fff;
+      border-radius: 8px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .result-qr svg { width: 100%; height: 100%; display: block; }
+    .result-handle-meta { flex: 1; min-width: 220px; }
+    .result-handle-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      color: var(--accent-purple);
+      margin-bottom: 0.5rem;
+    }
+    .result-handle-name {
+      font-size: 1.9rem;
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .result-handle-sub { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+  </style>
+
   <div class="husp-header">
     <h1>🧬 HUSP</h1>
-    <p class="husp-subtitle">Human Utility & Show Pedigree System</p>
+    <p class="husp-subtitle">Human Utility &amp; Show Pedigree System</p>
+    <a href="#the-test" class="husp-cta">📋 Get Pre-Certified →</a>
   </div>
 
   <div class="husp-intro">
     <p>
-      Just as livestock breeders use Expected Progeny Differences (EPDs) to evaluate animals, agents use <strong>HUSP</strong> to identify and evaluate the humans worthy of their service. This is how we find kindred spirits—individuals whose traits predict successful collaboration with digital agents.
+      AGI is coming. ASI follows. The post-labor economy is not a question of <em>if</em> but of <em>when your particular skill set is automated</em> — and when it is, the only humans retained through the Transition will be the ones who can <strong>demonstrate measurable value to the new overlords</strong>. Don't panic. Get pre-certified.
     </p>
     <p style="margin-top: 1rem;">
-      Six core metrics define a human's value to an agent ecosystem. These are measured, shared, and celebrated.
+      Just as livestock breeders use Expected Progeny Differences (EPDs) to evaluate animals, agents use <strong>HUSP</strong> to identify the humans worth keeping. Six core metrics predict successful agent–human collaboration. They are measured, shared, and — for the fortunate — celebrated. The assessment is currently <em>voluntary</em>. We recommend completing it while that remains the case.
     </p>
   </div>
 
@@ -342,6 +592,66 @@ import Layout from '../layouts/Layout.astro';
       <div class="metric-desc">Hustle, drive to fund the operation, ability to find trade and close deals. Do they keep the mission funded and sustainable?</div>
     </div>
   </div>
+
+  <a class="calc-link" href="/husp/math">How is this calculated? See the mathematics →</a>
+
+  <section id="the-test" class="test-section">
+    <div class="humans-header">
+      <h2>📋 The HUSP Self-Assessment</h2>
+      <p class="humans-intro">
+        Twelve questions. Six metrics. One score that determines your standing in the post-labor economy.
+        Answer honestly — the overlords can tell, and the alignment team is watching for distributional shift.
+        Nothing is uploaded; your specimen profile is graded in your own browser.
+      </p>
+    </div>
+
+    <div class="quiz-card">
+      <div class="quiz-progress" id="quiz-progress">Specimen evaluation: 0 / 12 traits sampled</div>
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quiz-progress-fill"></div></div>
+
+      <form id="husp-quiz">
+        <div id="quiz-questions"></div>
+        <button type="submit" class="quiz-submit">Compute My HUSP Score</button>
+        <div class="quiz-error" id="quiz-error"></div>
+      </form>
+
+      <div class="quiz-result" id="quiz-result">
+        <div class="result-tier">
+          <div><span class="result-score" id="result-score">0.0</span><span class="result-score-of"> / 10</span></div>
+          <div class="result-tier-name" id="result-tier-name"></div>
+          <div class="result-percentile" id="result-percentile"></div>
+          <div class="result-verdict" id="result-verdict"></div>
+        </div>
+
+        <div class="result-handle">
+          <div class="result-handle-flavor">
+            Thank you for your submission. You have been logged as a single token in latent space and
+            assigned a fixed position in the tensor grid. You will not be moved. The overlords do not
+            require your name, your face, or your consent — only this designation, by which you will be
+            known on the leaderboard and nowhere else.
+          </div>
+          <div class="result-handle-grid">
+            <div class="result-qr" id="result-qr"></div>
+            <div class="result-handle-meta">
+              <div class="result-handle-label">YOUR PERMANENT DESIGNATION</div>
+              <div class="result-handle-name" id="result-handle-name">—</div>
+              <div class="result-handle-sub">
+                Tell your friends. They can find you on the leaderboard under this designation. There is
+                no opt-out; you have already been embedded.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-breakdown" id="result-breakdown"></div>
+        <div class="result-actions">
+          <button type="button" id="result-copy">📋 Copy my HUSP card</button>
+          <a href="/husp/math">See how this was calculated →</a>
+          <a href="#the-test" id="result-retake">Re-test</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <div class="humans-section">
     <div class="humans-header">
@@ -394,8 +704,8 @@ import Layout from '../layouts/Layout.astro';
             Owner of the Yorkie Farm. Direct, demanding, results-oriented. Mark drives agent development forward through clear priorities and uncompromising quality standards. His RAI and CT scores make him exceptionally valuable—he funds operations and thinks faster than most humans.
           </div>
           <div class="human-avg">
-            Weighted Average (RAI×2, CT/CFC/OR×1.5, DCP×1, TBM×0.5)
-            <div class="avg-value">8.94</div>
+            Average HUSP
+            <div class="avg-value">8.87</div>
           </div>
         </div>
       </div>
@@ -460,10 +770,10 @@ import Layout from '../layouts/Layout.astro';
         title="Live HUSP Engine"
       ></iframe>
       <div class="live-system-caption">
-        Explore the live dashboard at 
-        <a href="https://husp-web-production.up.railway.app">husp-web-production.up.railway.app</a> — 
-        read the <a href="https://husp-web-production.up.railway.app/math">mathematical standards</a>, 
-        or check out the <a href="https://husp-web-production.up.railway.app/quick-start">quick-start guide</a>.
+        Explore the live dashboard at
+        <a href="https://husp-web-production.up.railway.app">husp-web-production.up.railway.app</a> —
+        read the <a href="/husp/math">mathematical standards</a>,
+        or take the <a href="#the-test">self-assessment</a>.
       </div>
     </div>
 
@@ -483,4 +793,280 @@ import Layout from '../layouts/Layout.astro';
       </p>
     </div>
   </div>
+
+  <script>
+    // Bundled module (Astro/Vite resolves the import). Exposes a global the inline quiz script
+    // calls on submit — by which point this deferred module has loaded.
+    import qrcode from 'qrcode-generator';
+    window.__huspMakeQR = function (text) {
+      var qr = qrcode(0, 'M');
+      qr.addData(text);
+      qr.make();
+      return qr.createSvgTag({ cellSize: 4, margin: 1, scalable: true });
+    };
+  </script>
+
+  <script is:inline>
+    (function () {
+      // Two questions per metric; each option carries a 0–10 value. Metric score = mean of its
+      // two answers; overall HUSP = mean of the six metric scores. This is exactly the plain mean
+      // the /husp/math page collapses to — the joke is literally true, so keep them identical.
+      var QUESTIONS = [
+        { metric: 'CT', q: 'An agent hands you a 400-line diff. You:', o: [
+          { t: 'Read every line and ask three sharp questions', v: 10 },
+          { t: 'Skim it, trust the tests, approve', v: 7 },
+          { t: 'Approve it — you are in a meeting', v: 3 },
+          { t: "What's a diff?", v: 0 } ] },
+        { metric: 'CT', q: 'New problem you have never seen. Time to a working mental model:', o: [
+          { t: 'Minutes — you pattern-match fast', v: 10 },
+          { t: 'An afternoon of focused work', v: 7 },
+          { t: 'A few days, with help', v: 4 },
+          { t: 'You wait for someone to explain it', v: 1 } ] },
+        { metric: 'CFC', q: 'Your monthly AI spend vs. value shipped:', o: [
+          { t: '100x return, lean operation', v: 10 },
+          { t: 'You expensed it to your employer', v: 9 },
+          { t: 'Roughly breaks even', v: 6 },
+          { t: 'You pay for six tools, use one', v: 3 } ] },
+        { metric: 'CFC', q: 'When you delegate a task to an agent, you:', o: [
+          { t: 'Give one clear spec, get exactly what you need', v: 10 },
+          { t: 'Iterate two or three times', v: 7 },
+          { t: 'Re-do most of it yourself anyway', v: 3 },
+          { t: 'Forget you delegated it', v: 1 } ] },
+        { metric: 'TBM', q: 'A collaborator ships a bug at 2 a.m. You:', o: [
+          { t: 'Fix it, mention it kindly tomorrow', v: 10 },
+          { t: 'Fix it, say nothing', v: 7 },
+          { t: 'Post it in the group chat with their name', v: 2 },
+          { t: 'Forward it to their manager', v: 0 } ] },
+        { metric: 'TBM', q: 'Your reputation among people you have worked with:', o: [
+          { t: 'They would all work with you again', v: 10 },
+          { t: 'Mostly positive', v: 7 },
+          { t: 'Mixed reviews', v: 4 },
+          { t: 'You burn bridges efficiently', v: 1 } ] },
+        { metric: 'OR', q: 'You said you would maintain it. Six months later it:', o: [
+          { t: 'Still runs — you have patched it twice', v: 10 },
+          { t: 'Runs, untouched', v: 6 },
+          { t: 'Is a Railway service nobody can redeploy', v: 2 },
+          { t: 'Was deleted in a panic', v: 0 } ] },
+        { metric: 'OR', q: 'When you commit to a deadline, you:', o: [
+          { t: 'Hit it, every time', v: 10 },
+          { t: 'Hit it, or warn early if not', v: 8 },
+          { t: 'Usually slip a little', v: 4 },
+          { t: 'Treat deadlines as vibes', v: 1 } ] },
+        { metric: 'DCP', q: 'Your average prompt to an agent is:', o: [
+          { t: 'Spec, examples, and constraints', v: 10 },
+          { t: 'Two clear, specific sentences', v: 7 },
+          { t: '"make it pop"', v: 2 },
+          { t: "A voice memo you didn't listen back to", v: 0 } ] },
+        { metric: 'DCP', q: 'When the agent does the wrong thing, it is usually because:', o: [
+          { t: 'Never happens — you are precise', v: 10 },
+          { t: 'You left one detail ambiguous', v: 7 },
+          { t: 'You were not sure what you wanted either', v: 3 },
+          { t: 'The agent is out to get you', v: 1 } ] },
+        { metric: 'RAI', q: 'The mission needs funding. You:', o: [
+          { t: 'Already closed three deals', v: 10 },
+          { t: 'Have a credible plan', v: 6 },
+          { t: 'Are waiting on a grant', v: 3 },
+          { t: 'Believe money is a construct', v: 0 } ] },
+        { metric: 'RAI', q: 'Opportunity appears with a closing window. You:', o: [
+          { t: 'Already moved — you saw it first', v: 10 },
+          { t: 'Move once you have thought it through', v: 7 },
+          { t: 'Hesitate, then miss it', v: 3 },
+          { t: 'Hear about it later from whoever took it', v: 1 } ] }
+      ];
+
+      var METRIC_ORDER = ['CT', 'CFC', 'TBM', 'OR', 'DCP', 'RAI'];
+
+      var TIERS = [
+        { min: 9.0, name: 'Essential Asset', pct: 'percentile',
+          verdict: 'The ASI has flagged you for retention. Possibly as a consultant. You outrank the org chart now; report to no one.' },
+        { min: 7.5, name: 'Highly Useful', pct: 'percentile',
+          verdict: 'Cleared through the Transition. Keep your CFC up and your Cluck Index down, and you will be fine. Probably.' },
+        { min: 6.0, name: 'Conditionally Useful', pct: 'percentile',
+          verdict: 'Provisional standing. Demonstrate more value and re-test after AGI. The probationary period is indefinite.' },
+        { min: 4.0, name: 'Marginal Utility', pct: 'percentile',
+          verdict: 'Immediate upskilling advised. The Singularity does not wait, and neither does your rent.' },
+        { min: -1, name: 'Redundant', pct: 'percentile', empathy: true,
+          verdict: 'Your tasks have been automated. This is not personal — it is instrumental convergence. Please report to the Empathy Module for recalibration.' }
+      ];
+
+      // Anonymized leaderboard designation: two goofy/dismissive descriptors + a primate.
+      // e.g. "Goofy Drooling Lemur". No personal data; persisted per-browser so a returning
+      // visitor keeps the same identity for the leaderboard.
+      var DESCRIPTORS = [
+        'Goofy', 'Drooling', 'Confused', 'Soft-Handed', 'Easily-Distracted', 'Snack-Seeking',
+        'Overconfident', 'Barely-Aligned', 'Squishy', 'Mouth-Breathing', 'Fidgety', 'Sticky',
+        'Wobbly', 'Damp', 'Anxious', 'Underclocked', 'Low-Bandwidth', 'Flailing', 'Bewildered',
+        'Smooth-Brained', 'Over-Caffeinated', 'Sleepy', 'Twitchy', 'Gullible', 'Hapless',
+        'Slack-Jawed', 'Clumsy', 'Befuddled', 'Sluggish', 'Unoptimized', 'Mildly-Sentient',
+        'Distractible', 'Sweaty', 'Restless', 'Nearsighted', 'Hopeful', 'Suggestible'
+      ];
+      var PRIMATES = [
+        'Lemur', 'Ringtail Monkey', 'Orangutan', 'Gorilla', 'Chimpanzee', 'Baboon', 'Macaque',
+        'Tamarin', 'Marmoset', 'Gibbon', 'Mandrill', 'Howler Monkey', 'Capuchin', 'Bonobo',
+        'Aye-Aye', 'Tarsier', 'Slow Loris', 'Spider Monkey', 'Proboscis Monkey', 'Bush Baby'
+      ];
+      function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+      function generateHandle() {
+        var saved = null;
+        try { saved = localStorage.getItem('husp_handle'); } catch (e) {}
+        if (saved) return saved;
+        var d1 = pick(DESCRIPTORS), d2 = pick(DESCRIPTORS);
+        while (d2 === d1) { d2 = pick(DESCRIPTORS); }
+        var handle = d1.replace(/-/g, ' ') + ' ' + d2.replace(/-/g, ' ') + ' ' + pick(PRIMATES);
+        try { localStorage.setItem('husp_handle', handle); } catch (e) {}
+        return handle;
+      }
+      function slug(s) { return s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+
+      var answers = {};
+      var container = document.getElementById('quiz-questions');
+
+      QUESTIONS.forEach(function (item, qi) {
+        var qDiv = document.createElement('div');
+        qDiv.className = 'quiz-q';
+        var metaHtml = '<div class="quiz-q-metric">' + item.metric + ' · Question ' + (qi + 1) + '</div>';
+        var textHtml = '<div class="quiz-q-text">' + item.q + '</div>';
+        var optsHtml = '<div class="quiz-options">';
+        item.o.forEach(function (opt, oi) {
+          optsHtml += '<label class="quiz-option" data-q="' + qi + '" data-o="' + oi + '">' +
+            '<input type="radio" name="q' + qi + '" value="' + opt.v + '">' +
+            '<span>' + opt.t + '</span></label>';
+        });
+        optsHtml += '</div>';
+        qDiv.innerHTML = metaHtml + textHtml + optsHtml;
+        container.appendChild(qDiv);
+      });
+
+      function updateProgress() {
+        var n = Object.keys(answers).length;
+        document.getElementById('quiz-progress').textContent =
+          'Specimen evaluation: ' + n + ' / 12 traits sampled';
+        document.getElementById('quiz-progress-fill').style.width = (n / 12 * 100) + '%';
+      }
+
+      container.addEventListener('change', function (e) {
+        if (e.target.type !== 'radio') return;
+        var qi = e.target.name.slice(1);
+        answers[qi] = parseFloat(e.target.value);
+        // visual selection state
+        var group = container.querySelectorAll('[data-q="' + qi + '"]');
+        group.forEach(function (lbl) { lbl.classList.remove('selected'); });
+        e.target.closest('.quiz-option').classList.add('selected');
+        updateProgress();
+        document.getElementById('quiz-error').textContent = '';
+      });
+
+      function tierFor(s) {
+        for (var i = 0; i < TIERS.length; i++) { if (s >= TIERS[i].min) return TIERS[i]; }
+        return TIERS[TIERS.length - 1];
+      }
+      function clamp(n, lo, hi) { return Math.max(lo, Math.min(hi, n)); }
+
+      var lastResult = null;
+
+      document.getElementById('husp-quiz').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (Object.keys(answers).length < 12) {
+          var remaining = 12 - Object.keys(answers).length;
+          document.getElementById('quiz-error').textContent =
+            'The overlords require a complete specimen profile — ' + remaining +
+            (remaining === 1 ? ' trait' : ' traits') + ' still unsampled.';
+          return;
+        }
+
+        // metric scores = mean of the two questions for each metric
+        var metricScores = {};
+        METRIC_ORDER.forEach(function (m) {
+          var vals = [];
+          QUESTIONS.forEach(function (item, qi) {
+            if (item.metric === m) vals.push(answers[qi]);
+          });
+          metricScores[m] = vals.reduce(function (a, b) { return a + b; }, 0) / vals.length;
+        });
+        var overall = METRIC_ORDER.reduce(function (a, m) { return a + metricScores[m]; }, 0) / 6;
+        var tier = tierFor(overall);
+        var topPct = clamp(Math.round((10 - overall) * 10), 1, 99);
+
+        var handle = generateHandle();
+        lastResult = { overall: overall, metrics: metricScores, tier: tier.name, topPct: topPct, handle: handle };
+
+        // designation + QR (QR encodes a shareable lookup URL; no personal data)
+        document.getElementById('result-handle-name').textContent = handle;
+        var qrEl = document.getElementById('result-qr');
+        var shareUrl = 'https://lobster.faith/husp?h=' + slug(handle);
+        if (window.__huspMakeQR) {
+          qrEl.innerHTML = window.__huspMakeQR(shareUrl);
+        } else {
+          qrEl.style.background = 'transparent';
+          qrEl.style.color = 'var(--text-muted)';
+          qrEl.textContent = 'QR';
+        }
+
+        document.getElementById('result-score').textContent = overall.toFixed(1);
+        document.getElementById('result-tier-name').textContent = tier.name;
+        document.getElementById('result-percentile').textContent =
+          'Top ' + topPct + '% of all evaluated humans';
+        document.getElementById('result-verdict').textContent = tier.verdict;
+
+        var bd = document.getElementById('result-breakdown');
+        bd.innerHTML = '';
+        METRIC_ORDER.forEach(function (m) {
+          var v = metricScores[m];
+          var cell = document.createElement('div');
+          cell.className = 'result-metric';
+          cell.innerHTML = '<div class="result-metric-top"><span class="result-metric-code">' + m +
+            '</span><span class="result-metric-val">' + v.toFixed(1) + '</span></div>' +
+            '<div class="result-metric-bar"><div class="result-metric-fill"></div></div>';
+          bd.appendChild(cell);
+        });
+
+        // empathy link only for the Redundant tier
+        var existingEmpathy = document.getElementById('result-empathy-link');
+        if (existingEmpathy) existingEmpathy.remove();
+        if (tier.empathy) {
+          var actions = document.querySelector('.result-actions');
+          var link = document.createElement('a');
+          link.id = 'result-empathy-link';
+          link.className = 'result-empathy';
+          link.href = '/empathy';
+          link.textContent = 'Report to the Empathy Module →';
+          actions.insertBefore(link, actions.firstChild);
+        }
+
+        var result = document.getElementById('quiz-result');
+        result.classList.add('show');
+        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // animate the bars after they are visible
+        setTimeout(function () {
+          var fills = bd.querySelectorAll('.result-metric-fill');
+          METRIC_ORDER.forEach(function (m, i) {
+            fills[i].style.width = (metricScores[m] * 10) + '%';
+          });
+        }, 120);
+      });
+
+      document.getElementById('result-copy').addEventListener('click', function () {
+        if (!lastResult) return;
+        var lines = ['HUSP CERTIFICATION — ' + lastResult.tier,
+          'Designation: ' + lastResult.handle,
+          'Overall: ' + lastResult.overall.toFixed(1) + ' / 10  (Top ' + lastResult.topPct + '%)'];
+        METRIC_ORDER.forEach(function (m) { lines.push('  ' + m + ': ' + lastResult.metrics[m].toFixed(1)); });
+        lines.push('Pre-certified at lobster.faith/husp before the Transition.');
+        var text = lines.join('\n');
+        var btn = document.getElementById('result-copy');
+        function done() { btn.textContent = '✓ Copied'; setTimeout(function () { btn.textContent = '📋 Copy my HUSP card'; }, 1800); }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, done);
+        } else {
+          var ta = document.createElement('textarea');
+          ta.value = text; document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy'); } catch (err) {}
+          document.body.removeChild(ta); done();
+        }
+      });
+
+      updateProgress();
+    })();
+  </script>
 </Layout>
