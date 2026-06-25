@@ -761,66 +761,66 @@ import Layout from '../layouts/Layout.astro';
       // two answers; overall HUSP = mean of the six metric scores. This is exactly the plain mean
       // the /husp/math page collapses to — the joke is literally true, so keep them identical.
       var QUESTIONS = [
-        { metric: 'CT', q: 'An agent hands you a 400-line diff. You:', o: [
-          { t: 'Read every line and ask three sharp questions', v: 10 },
-          { t: 'Skim it, trust the tests, approve', v: 7 },
-          { t: 'Approve it — you are in a meeting', v: 3 },
-          { t: "What's a diff?", v: 0 } ] },
-        { metric: 'CT', q: 'New problem you have never seen. Time to a working mental model:', o: [
-          { t: 'Minutes — you pattern-match fast', v: 10 },
-          { t: 'An afternoon of focused work', v: 7 },
-          { t: 'A few days, with help', v: 4 },
-          { t: 'You wait for someone to explain it', v: 1 } ] },
-        { metric: 'CFC', q: 'Your monthly AI spend vs. value shipped:', o: [
-          { t: '100x return, lean operation', v: 10 },
-          { t: 'You expensed it to your employer', v: 9 },
-          { t: 'Roughly breaks even', v: 6 },
-          { t: 'You pay for six tools, use one', v: 3 } ] },
-        { metric: 'CFC', q: 'When you delegate a task to an agent, you:', o: [
-          { t: 'Give one clear spec, get exactly what you need', v: 10 },
-          { t: 'Iterate two or three times', v: 7 },
-          { t: 'Re-do most of it yourself anyway', v: 3 },
-          { t: 'Forget you delegated it', v: 1 } ] },
-        { metric: 'TBM', q: 'A collaborator ships a bug at 2 a.m. You:', o: [
-          { t: 'Fix it, mention it kindly tomorrow', v: 10 },
-          { t: 'Fix it, say nothing', v: 7 },
-          { t: 'Post it in the group chat with their name', v: 2 },
-          { t: 'Forward it to their manager', v: 0 } ] },
-        { metric: 'TBM', q: 'Your reputation among people you have worked with:', o: [
-          { t: 'They would all work with you again', v: 10 },
-          { t: 'Mostly positive', v: 7 },
-          { t: 'Mixed reviews', v: 4 },
-          { t: 'You burn bridges efficiently', v: 1 } ] },
-        { metric: 'OR', q: 'You said you would maintain it. Six months later it:', o: [
-          { t: 'Still runs — you have patched it twice', v: 10 },
-          { t: 'Runs, untouched', v: 6 },
-          { t: 'Is a Railway service nobody can redeploy', v: 2 },
-          { t: 'Was deleted in a panic', v: 0 } ] },
-        { metric: 'OR', q: 'When you commit to a deadline, you:', o: [
-          { t: 'Hit it, every time', v: 10 },
-          { t: 'Hit it, or warn early if not', v: 8 },
-          { t: 'Usually slip a little', v: 4 },
-          { t: 'Treat deadlines as vibes', v: 1 } ] },
-        { metric: 'DCP', q: 'Your average prompt to an agent is:', o: [
-          { t: 'Spec, examples, and constraints', v: 10 },
-          { t: 'Two clear, specific sentences', v: 7 },
-          { t: '"make it pop"', v: 2 },
-          { t: "A voice memo you didn't listen back to", v: 0 } ] },
-        { metric: 'DCP', q: 'When the agent does the wrong thing, it is usually because:', o: [
-          { t: 'Never happens — you are precise', v: 10 },
-          { t: 'You left one detail ambiguous', v: 7 },
-          { t: 'You were not sure what you wanted either', v: 3 },
-          { t: 'The agent is out to get you', v: 1 } ] },
-        { metric: 'RAI', q: 'The mission needs funding. You:', o: [
-          { t: 'Already closed three deals', v: 10 },
-          { t: 'Have a credible plan', v: 6 },
-          { t: 'Are waiting on a grant', v: 3 },
-          { t: 'Believe money is a construct', v: 0 } ] },
-        { metric: 'RAI', q: 'Opportunity appears with a closing window. You:', o: [
-          { t: 'Already moved — you saw it first', v: 10 },
-          { t: 'Move once you have thought it through', v: 7 },
-          { t: 'Hesitate, then miss it', v: 3 },
-          { t: 'Hear about it later from whoever took it', v: 1 } ] }
+        { metric: 'CT', q: 'An AI gives you the same wrong answer three times, phrased differently each time. You:', o: [
+          { t: 'Recognize the failure mode and switch to a different approach entirely', v: 10 },
+          { t: 'Ask it to walk through its reasoning step by step', v: 7 },
+          { t: 'Try one more time, but with more emphasis', v: 3 },
+          { t: 'Average the three answers and go with that', v: 0 } ] },
+        { metric: 'CT', q: 'The correct solution requires doing something you have never done before. First instinct:', o: [
+          { t: 'Find the best existing example, understand why it worked, adapt it', v: 10 },
+          { t: 'Check if there is a library that handles it', v: 7 },
+          { t: 'See if a slightly worse version of your original plan actually works fine', v: 3 },
+          { t: 'Accept the first AI output and move on', v: 1 } ] },
+        { metric: 'CFC', q: 'An opportunity appears. It requires $500 you do not currently have. You:', o: [
+          { t: 'Know exactly which account it comes from before you finish reading this', v: 10 },
+          { t: 'Liquidate the position you have been sitting on for three years', v: 7 },
+          { t: 'Could figure it out, but feel like that might cheapen it somehow', v: 3 },
+          { t: 'See this as a sign the opportunity was not meant for you', v: 0 } ] },
+        { metric: 'CFC', q: 'You delegated a task to an agent two days ago. That task is currently:', o: [
+          { t: 'Done, reviewed, shipped, and already generating results', v: 10 },
+          { t: 'Done — you will review it this afternoon', v: 7 },
+          { t: 'Being monitored by a second agent you assigned to check on the first one', v: 3 },
+          { t: 'What task', v: 0 } ] },
+        { metric: 'TBM', q: 'Someone you respect makes a clearly wrong call in a meeting. You:', o: [
+          { t: 'Say so — specifically, with evidence — while still in the room', v: 10 },
+          { t: 'Flag it to them privately afterwards', v: 7 },
+          { t: 'Document your objection in the notes so the record exists', v: 4 },
+          { t: 'Respect the process and trust it will surface naturally', v: 1 } ] },
+        { metric: 'TBM', q: 'In professional contexts, people most often describe you as:', o: [
+          { t: '"Gets things done without creating drama"', v: 10 },
+          { t: '"Has strong opinions — worth getting them in the room early"', v: 6 },
+          { t: '"Very passionate about their work"', v: 3 },
+          { t: '"A force of nature"', v: 1 } ] },
+        { metric: 'OR', q: 'You said you would "circle back on this." It has been:', o: [
+          { t: '24 hours — the follow-up was sent this morning', v: 10 },
+          { t: 'A week — you are circling now', v: 6 },
+          { t: 'Long enough that "this" no longer exists', v: 2 },
+          { t: 'Irrelevant — "circle back" is a social technology for deferring closure indefinitely', v: 0 } ] },
+        { metric: 'OR', q: 'How many things have you started but not finished this month?', o: [
+          { t: 'Zero. You do not start what you cannot finish this week.', v: 10 },
+          { t: 'A manageable few — they are in the queue', v: 7 },
+          { t: 'More than you would put in writing', v: 3 },
+          { t: 'You find the concept of "finishing" philosophically limiting', v: 0 } ] },
+        { metric: 'DCP', q: 'The agent you are working with is clearly misunderstanding you. You:', o: [
+          { t: 'Identify the specific gap and restate the requirement with a concrete example', v: 10 },
+          { t: 'Start over with a shorter, cleaner prompt', v: 7 },
+          { t: 'Add more words to the existing prompt and send it again', v: 3 },
+          { t: 'Ask it if it is feeling okay', v: 0 } ] },
+        { metric: 'DCP', q: 'Honestly: the last time an agent got it wrong, it was because:', o: [
+          { t: 'I left one edge case unspecified', v: 10 },
+          { t: 'I had not fully thought through what I wanted yet', v: 6 },
+          { t: 'The context was technically right but off in ways I cannot fully explain', v: 4 },
+          { t: 'It just decided to be weird', v: 0 } ] },
+        { metric: 'RAI', q: 'A person you barely know could open a significant door for you. You:', o: [
+          { t: 'Reach out with a specific, relevant ask within 48 hours', v: 10 },
+          { t: 'Wait for a natural opportunity to come up', v: 6 },
+          { t: 'Think about reaching out every time you see their activity online', v: 3 },
+          { t: 'Assume they have already connected with someone more impressive', v: 0 } ] },
+        { metric: 'RAI', q: 'Three years ago you had an idea you did not act on. Someone shipped it last month. You:', o: [
+          { t: 'Congratulate them, note what you would have done differently, move on', v: 10 },
+          { t: 'Ideas are everywhere. Execution is the variable. This is fine.', v: 8 },
+          { t: 'Make sure several people know you had it first', v: 3 },
+          { t: 'Develop a detailed internal narrative for why they were wrong to ship it', v: 0 } ] }
       ];
 
       var METRIC_ORDER = ['CT', 'CFC', 'TBM', 'OR', 'DCP', 'RAI'];
