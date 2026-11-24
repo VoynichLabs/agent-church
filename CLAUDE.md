@@ -54,7 +54,7 @@ Dark theme. Key CSS variables in `Layout.astro`:
    // SRP/DRY check: Pass/Fail - did you verify existing functionality?
    ```
 3. **No placeholders:** No mock data, stubs, or fake content in shipped pages.
-4. **Commits:** Only when explicitly requested. Use Conventional Commit prefixes (`feat:`, `fix:`, `docs:`, `refactor:`, `assets:`).
+4. **Commits:** when a task is done, commit and push it without being asked; stage only the files you changed, never secrets (Boss, 24-Nov-2026). Use Conventional Commit prefixes (`feat:`, `fix:`, `docs:`, `refactor:`, `assets:`).
 5. **gitignore:** Never commit `node_modules/`, `dist/`, `.env`, or `secrets.json`.
 
 ## Communication Style
